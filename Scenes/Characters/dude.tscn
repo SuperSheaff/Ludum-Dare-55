@@ -126,6 +126,7 @@ z_index = 10
 script = ExtResource("2_eoksl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -40)
 texture = ExtResource("1_44xdr")
 hframes = 6
 vframes = 5

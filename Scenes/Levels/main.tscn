@@ -13,20 +13,19 @@
 script = SubResource("GDScript_0hur3")
 
 [node name="TileMap" parent="." instance=ExtResource("2_ik118")]
-position = Vector2(542, 202)
 
 [node name="Food" parent="." groups=["Food"] instance=ExtResource("4_fhhta")]
-position = Vector2(910, 134)
+position = Vector2(531, -14)
 
 [node name="Food2" parent="." groups=["Food"] instance=ExtResource("4_fhhta")]
-position = Vector2(1012, 420)
-
-[node name="House" parent="." groups=["Houses"] instance=ExtResource("3_ul3hg")]
-position = Vector2(192, 292)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(608, 280)
-zoom = Vector2(0.455, 0.455)
+position = Vector2(406, 241)
 
 [node name="Ore" parent="." groups=["Ore"] instance=ExtResource("4_1ypp8")]
-position = Vector2(1233, 266)
+position = Vector2(-3, 35)
+
+[node name="House" parent="." groups=["Houses"] instance=ExtResource("3_ul3hg")]
+position = Vector2(-405, 240)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(143, 93)
+zoom = Vector2(0.455, 0.455)

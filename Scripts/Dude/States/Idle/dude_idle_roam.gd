@@ -1,41 +1,45 @@
 extends DudeIdle
 class_name DudeIdleRoam
 
-var wander_time : float
+var target_position: Vector2
 
 func Enter():
 	super.Enter()
-	
 	randomize_wander()
 	dude_animator.play("move")
-	
+
 func Update(delta: float):
 	super.Update(delta)
-
-	if wander_time > 0:
-		wander_time -= delta
-		
-	else:
+	
+	if dude.global_position.distance_to(target_position) < 10.0:
 		Transitioned.emit(self, "IdlePause")
 
 func Physics_Update(delta: float):
 	super.Physics_Update(delta)
-		
-	if dude:
-		dude.velocity = move_direction * move_speed
-		
-		var motion = dude.velocity * delta
-		var new_position = dude.global_position + motion
-		if is_within_tilemap_bounds(new_position):
-			dude.global_position = new_position
-		else:
-			dude.velocity = Vector2.ZERO  
+	if dude and target_position != null:
+		var direction = (target_position - dude.global_position).normalized()
+		dude.velocity = direction * move_speed
 
 func randomize_wander():
-	move_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
-	wander_time = randf_range(0, 1)
+	var tilemap = GameController.tilemap
+	var bounds = tilemap.get_used_rect()
+	var random_cell = Vector2()
+	var valid_cell_found = false
+
+	while not valid_cell_found:
+		random_cell = Vector2(
+			randi() % int(bounds.size.x) + bounds.position.x,
+			randi() % int(bounds.size.y) + bounds.position.y
+		)
+		
+		if tilemap.get_cell_source_id(0, random_cell) != -1:
+			valid_cell_found = true
+
+	target_position = tilemap.map_to_local(random_cell) + tilemap.tile_set.tile_size * 0.5
+
 
 func is_within_tilemap_bounds(position):
 	var tilemap = GameController.tilemap
-	var cell = tilemap.local_to_map(position)
+	var local_position = tilemap.to_local(position)
+	var cell = tilemap.local_to_map(local_position)
 	return tilemap.get_cell_source_id(0, cell) != -1 

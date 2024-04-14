@@ -24,7 +24,7 @@ func move_towards_house(delta):
 	if house_position:
 		var distance = dude.global_position.distance_to(house_position)
 		if distance <= house_distance:
-			GameController.add_food()
+			GameController.add_ore()
 			Transitioned.emit(self, "MoveToOre")
 	else:
 		Transitioned.emit(self, "IdleRoam")
