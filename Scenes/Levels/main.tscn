@@ -1,14 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://u06ql36qquqn"]
+[gd_scene load_steps=10 format=3 uid="uid://u06ql36qquqn"]
 
+[ext_resource type="Script" path="res://Scenes/Levels/main.gd" id="1_aqap3"]
 [ext_resource type="PackedScene" uid="uid://cndvm7kt7sj42" path="res://Tilemaps/tile_map.tscn" id="2_ik118"]
 [ext_resource type="PackedScene" uid="uid://ccorg5bj766v5" path="res://Scenes/Buildings/house.tscn" id="3_ul3hg"]
 [ext_resource type="PackedScene" uid="uid://2hlkl607tjp6" path="res://Scenes/Resources/ore.tscn" id="4_1ypp8"]
 [ext_resource type="PackedScene" uid="uid://fcn2r66phgcl" path="res://Scenes/Resources/food.tscn" id="4_fhhta"]
 [ext_resource type="PackedScene" uid="uid://cgi0s30chscjh" path="res://Scenes/Buildings/barracks.tscn" id="5_r5ic8"]
+[ext_resource type="PackedScene" uid="uid://l5riaxieapx4" path="res://Scenes/Environment/cloud.tscn" id="6_14di8"]
+[ext_resource type="PackedScene" uid="uid://chhmxseam8mb6" path="res://Scenes/UI/pause_menu.tscn" id="7_tqgo0"]
 
 [sub_resource type="GDScript" id="GDScript_0hur3"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_aqap3")
 
 [node name="GameController" type="Node" parent="."]
 script = SubResource("GDScript_0hur3")
@@ -31,5 +35,25 @@ position = Vector2(-405, 240)
 position = Vector2(143, 93)
 zoom = Vector2(0.455, 0.455)
 
+[node name="ColorRect" type="ColorRect" parent="Camera2D"]
+z_index = -4
+offset_left = -1308.0
+offset_top = -759.0
+offset_right = 1288.0
+offset_bottom = 732.0
+color = Color(0.301961, 0.74902, 0.890196, 1)
+
 [node name="Barracks" parent="." groups=["Barracks"] instance=ExtResource("5_r5ic8")]
 position = Vector2(315, -123)
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="Cloud" parent="Environment" instance=ExtResource("6_14di8")]
+position = Vector2(953, 446)
+
+[node name="Cloud2" parent="Environment" instance=ExtResource("6_14di8")]
+position = Vector2(-857, -250)
+
+[node name="Pause" parent="." instance=ExtResource("7_tqgo0")]
+process_mode = 2
+visible = false
