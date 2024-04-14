@@ -9,6 +9,8 @@ var current_ore = 0
 func _ready():
 	spawn_dude()
 	spawn_dude()
+	spawn_dude()
+	spawn_dude()
 
 func check_for_task(dude_position):
 	var closest_task = null

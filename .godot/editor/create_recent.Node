@@ -1,0 +1,14 @@
+AnimationTree
+AnimationPlayer
+Sprite2D
+DudeWarriorPause
+DudeWarriorRoam
+DudeOreBringOreHome
+DudeOreCollect
+DudeOreMoveToOre
+Camera2D
+DudeIdle
+RigidBody2D
+CollisionShape2D
+CharacterBody2D
+Timer

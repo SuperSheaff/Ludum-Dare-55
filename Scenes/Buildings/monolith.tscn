@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cxxlrpp6n0u2g"]
+[gd_scene load_steps=3 format=3 uid="uid://cdhb6odc3n2hk"]
 
-[ext_resource type="Texture2D" uid="uid://bbxi8enue3gds" path="res://Sprites/Environment/Monument-Sheet.png" id="1_0kxcr"]
+[ext_resource type="Texture2D" path="res://Sprites/Environment/Monument-Sheet.png" id="1_0kxcr"]
 [ext_resource type="Script" path="res://Scripts/monolith.gd" id="1_xlcj7"]
 
 [node name="Monolith" type="Node2D"]

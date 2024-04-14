@@ -1,0 +1,12 @@
+res://Scenes/Levels/main.tscn
+res://Tilemaps/tile_map.tscn
+res://Scenes/Buildings/house.tscn
+res://Scenes/Resources/food.tscn
+res://Scenes/Characters/dude.tscn
+res://Scenes/Resources/ore.tscn
+res://Scenes/Buildings/barracks.tscn
+res://Scripts/Dude/States/Idle/dude_idle.gd
+res://Scenes/Buildings/monolith.tscn
+res://Scripts/monolith.gd
+res://Tilemaps/island_tileset.tres
+res://Scripts/game_controller.gd
