@@ -1,0 +1,20 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dkrafu0ql6y02"]
+
+[ext_resource type="Texture2D" uid="uid://ce0f31dxvkson" path="res://Sprites/Environment/TileSet.png" id="1_0h4ci"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y7scv"]
+texture = ExtResource("1_0h4ci")
+texture_region_size = Vector2i(160, 80)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+
+[resource]
+tile_shape = 1
+tile_layout = 5
+tile_size = Vector2i(160, 80)
+physics_layer_0/collision_layer = 1
+sources/2 = SubResource("TileSetAtlasSource_y7scv")
