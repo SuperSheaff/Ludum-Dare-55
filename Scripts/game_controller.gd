@@ -58,9 +58,11 @@ func check_for_task(dude_position):
 func spawn_dude():
 	var new_dude = dude_scene.instantiate()
 	var house = find_nearest_house(new_dude.global_position)
+	AudioManager.play("spawn", -9)
 	if house:
 		new_dude.house = house
 		house.add_child(new_dude)
+		
 		print("Dude spawned and assigned to house at position: ", house.global_position)
 
 func find_nearest_house(dude_position):

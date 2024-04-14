@@ -1,6 +1,8 @@
 extends DudeOre
 class_name DudeOreCollect
 
+@onready var ore_emitter = load("res://Scenes/Emitters/ore_particle.tscn")
+
 var collect_time : float
 
 func Enter():
@@ -17,6 +19,11 @@ func Update(delta: float):
 		
 	else:
 		Transitioned.emit(self, "BringOreHome")
+		#ore emit
+		var new_ore_emitter = ore_emitter.instantiate()
+		new_ore_emitter.global_position = dude.global_position
+		add_child(new_ore_emitter)
+		AudioManager.play("ore", -10)
 
 func Physics_Update(delta: float):
 	super.Physics_Update(delta)

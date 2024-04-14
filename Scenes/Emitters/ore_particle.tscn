@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://bv4oe4vshs5hb"]
+
+[ext_resource type="Texture2D" uid="uid://c8fungynk08w0" path="res://Sprites/Environment/ore_particle.png" id="1_8nlv3"]
+[ext_resource type="Script" path="res://Scenes/Emitters/food_particle.gd" id="2_v6ify"]
+
+[sub_resource type="Curve" id="Curve_bqm2q"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.792135, 0.32967), 0.0, 0.0, 0, 0, Vector2(0.870787, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[node name="Ore_particle" type="CPUParticles2D"]
+emitting = false
+amount = 4
+lifetime = 0.5
+one_shot = true
+explosiveness = 1.0
+randomness = 1.0
+texture = ExtResource("1_8nlv3")
+emission_shape = 1
+emission_sphere_radius = 45.0
+direction = Vector2(0, -1)
+spread = 30.0
+gravity = Vector2(0, 100)
+initial_velocity_min = 80.0
+initial_velocity_max = 120.0
+angular_velocity_min = -87.27
+angular_velocity_max = 58.18
+tangential_accel_min = -16.16
+tangential_accel_max = 12.12
+scale_amount_curve = SubResource("Curve_bqm2q")
+script = ExtResource("2_v6ify")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

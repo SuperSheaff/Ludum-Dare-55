@@ -1,6 +1,8 @@
 extends DudeFood
 class_name DudeFoodCollect
 
+@onready var food_emitter = load("res://Scenes/Emitters/food_particle.tscn")
+
 var collect_time : float
 
 func Enter():
@@ -17,6 +19,11 @@ func Update(delta: float):
 		
 	else:
 		Transitioned.emit(self, "BringFoodHome")
+		#create food emittor
+		var new_food_emitter = food_emitter.instantiate()
+		new_food_emitter.global_position = dude.global_position
+		add_child(new_food_emitter)
+		AudioManager.play("food", -10)
 
 func Physics_Update(delta: float):
 	super.Physics_Update(delta)

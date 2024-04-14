@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cjahglknwb6f5"]
+[gd_scene load_steps=3 format=3 uid="uid://cgi0s30chscjh"]
 
 [ext_resource type="Script" path="res://Scripts/barracks.gd" id="1_vrhhb"]
 [ext_resource type="Texture2D" uid="uid://coh4b01foym1s" path="res://Sprites/Environment/Home-Sheet.png" id="2_doh7e"]
