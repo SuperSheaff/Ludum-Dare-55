@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://u06ql36qquqn"]
+
+[ext_resource type="PackedScene" uid="uid://dc0njor1mwxkd" path="res://Scenes/Characters/dude.tscn" id="1_l2j75"]
+[ext_resource type="PackedScene" uid="uid://cndvm7kt7sj42" path="res://Tilemaps/tile_map.tscn" id="2_ik118"]
+[ext_resource type="PackedScene" uid="uid://ccorg5bj766v5" path="res://Scenes/Buildings/house.tscn" id="3_ul3hg"]
+[ext_resource type="PackedScene" uid="uid://fcn2r66phgcl" path="res://Scenes/Resources/food.tscn" id="4_fhhta"]
+
+[sub_resource type="GDScript" id="GDScript_0hur3"]
+script/source = "extends Node
+
+var dude_scene = preload(\"res://Scenes/Characters/dude.tscn\")
+
+func _ready():
+	spawn_dude()
+
+func check_for_task(dude_position):
+	var closest_food = null
+	var min_distance = INF  # Set to infinity to ensure any real distance is shorter
+
+	# Get all Food instances in the scene
+	var food_items = get_tree().get_nodes_in_group(\"Food\")
+	
+	for food in food_items:
+		if not food.is_assigned:
+			var distance = dude_position.distance_to(food.global_position)
+			if distance < min_distance:
+				min_distance = distance
+				closest_food = food
+
+	if closest_food:
+		closest_food.assign_to_dude()  # Mark the food as assigned
+		return closest_food
+
+	return null
+	
+func spawn_dude():
+	var new_dude = dude_scene.instance()
+	var house = find_nearest_house(new_dude.global_position)  # Assuming a method to find the nearest house
+	if house:
+		new_dude.house = house  # Assign house to Dude
+		add_child(new_dude)  # Add the new Dude to the scene
+		print(\"Dude spawned and assigned to house at position: \", house.global_position)
+
+func find_nearest_house(dude_position):
+	var houses = get_tree().get_nodes_in_group(\"Houses\")  # Assuming all houses are in a group named \"Houses\"
+	var nearest_house = null
+	var min_distance = INF
+
+	for house in houses:
+		var distance = dude_position.distance_to(house.global_position)
+		if distance < min_distance:
+			min_distance = distance
+			nearest_house = house
+
+	return nearest_house
+"
+
+[node name="Main" type="Node2D"]
+
+[node name="GameController" type="Node" parent="."]
+script = SubResource("GDScript_0hur3")
+
+[node name="TileMap" parent="." instance=ExtResource("2_ik118")]
+position = Vector2(542, 202)
+
+[node name="Food" parent="." groups=["Food"] instance=ExtResource("4_fhhta")]
+position = Vector2(910, 134)
+
+[node name="House" parent="." groups=["House"] instance=ExtResource("3_ul3hg")]
+position = Vector2(192, 292)
+
+[node name="Dude" parent="." instance=ExtResource("1_l2j75")]
+position = Vector2(608, 352)

@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://u06ql36qquqn"]
+
+[ext_resource type="PackedScene" uid="uid://dc0njor1mwxkd" path="res://Scenes/Characters/dude.tscn" id="1_l2j75"]
+[ext_resource type="PackedScene" uid="uid://cndvm7kt7sj42" path="res://Tilemaps/tile_map.tscn" id="2_ik118"]
+[ext_resource type="PackedScene" uid="uid://ccorg5bj766v5" path="res://Scenes/Buildings/house.tscn" id="3_ul3hg"]
+[ext_resource type="PackedScene" uid="uid://fcn2r66phgcl" path="res://Scenes/Resources/food.tscn" id="4_fhhta"]
+
+[sub_resource type="GDScript" id="GDScript_0hur3"]
+
+[node name="Main" type="Node2D"]
+
+[node name="GameController" type="Node" parent="."]
+script = SubResource("GDScript_0hur3")
+
+[node name="TileMap" parent="." instance=ExtResource("2_ik118")]
+position = Vector2(542, 202)
+
+[node name="Food" parent="." groups=["Food"] instance=ExtResource("4_fhhta")]
+position = Vector2(910, 134)
+
+[node name="House" parent="." groups=["House"] instance=ExtResource("3_ul3hg")]
+position = Vector2(192, 292)
+
+[node name="Dude" parent="." instance=ExtResource("1_l2j75")]
+position = Vector2(608, 352)

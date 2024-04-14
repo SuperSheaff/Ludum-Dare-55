@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://fcn2r66phgcl"]
+
+[ext_resource type="Script" path="res://Scripts/food.gd" id="1_pala2"]
+[ext_resource type="Texture2D" uid="uid://dovncermk2v4h" path="res://Sprites/Environment/Food-Sheet.png" id="2_u0l2o"]
+
+[node name="Food" type="Node2D"]
+script = ExtResource("1_pala2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_u0l2o")

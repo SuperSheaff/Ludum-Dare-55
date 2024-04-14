@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://2hlkl607tjp6"]
+
+[ext_resource type="Script" path="res://Scripts/ore.gd" id="1_ts5xx"]
+[ext_resource type="Texture2D" uid="uid://dlqv6dmu2wrya" path="res://Sprites/Environment/Ore-Sheet.png" id="2_05gkq"]
+
+[node name="Ore" type="Node2D"]
+script = ExtResource("1_ts5xx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_05gkq")
