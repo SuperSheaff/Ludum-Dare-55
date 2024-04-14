@@ -14,8 +14,7 @@ var _edge_shapes = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_get_collision_shape()
-	_get_collision_edge(false)
+	_generate_island()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,8 +37,10 @@ func get_mass():
 
 
 # TODO better island generation code 
-func generate_island():
-	pass
+func _generate_island():
+	# fancy gen code here
+	_get_collision_shape()
+	_get_collision_edge(false)
 	
 
 
