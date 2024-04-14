@@ -25,6 +25,7 @@ func move_towards_house(delta):
 		var distance = dude.global_position.distance_to(house_position)
 		if distance <= house_distance:
 			GameController.add_ore()
+			AudioManager.play("deposit", -14)
 			Transitioned.emit(self, "MoveToOre")
 	else:
 		Transitioned.emit(self, "IdleRoam")

@@ -4,9 +4,10 @@ var audio_files = \
 {
 	"food" : ["res://Audio/food.wav", "SFX", 0],
 	"ore" : ["res://Audio/ore.wav", "SFX", 0],
-	"spawn" : ["res://Audio/spawn.wav", "SFX", 0]
+	"deposit" : ["res://Audio/deposit.wav", "SFX", 0],
+	"spawn" : ["res://Audio/spawn.wav", "SFX", 0],
 	#Music
-#	"intro" : ["res://Audio/intro.ogg", "MUSIC", 1],
+	"ambient" : ["res://Audio/awful_music.ogg", "MUSIC", 1]
 
 }
 
@@ -74,7 +75,7 @@ func play_music(sound_name, volume = -3, pitch = 1.0, fade = 0):
 	current_music = play(sound_name, volume, pitch, fade, true)
 	current_music_name = sound_name
 	music_streams.append(current_music)
-#	print("PLAY MUSIC: %s" % str(current_music))
+	print("PLAY MUSIC: %s" % str(current_music))
 	
 	
 func stop_music(_sound_name, fade):

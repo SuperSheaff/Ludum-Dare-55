@@ -2,13 +2,8 @@ extends Node2D
 
 @onready var pause_menu = $Pause
 
-func _process(delta):
-	#if Input.is_action_just_pressed("ui_cancel"):
-		#
-		#pause_menu.show()
-		#get_tree().paused = true
-		#pass
-	pass
+func _ready():
+	AudioManager.play_music("ambient", -6)
 
 
 func _unhandled_input(event):

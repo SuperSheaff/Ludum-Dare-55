@@ -6,7 +6,6 @@ var speed = 1
 func _ready():
 	speed = randf_range(0.1, .6)
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	position.x += speed
