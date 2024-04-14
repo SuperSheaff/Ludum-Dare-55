@@ -22,7 +22,7 @@ func Update(delta: float):
 		#Transitioned.emit(self, "MoveToPray")
 		#print("Received Pray task")
 
-	#elif task is Fight:
-		#dude.set_task(task)
-		#Transitioned.emit(self, "MoveToFight")
-		#print("Received Fight task")
+	elif task is Barracks:
+		dude.set_task(task)
+		Transitioned.emit(self, "WarriorRoam")
+		print("Received Warrior task")
