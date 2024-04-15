@@ -120,6 +120,10 @@ func _merge_island(local_cs, other_cs):
 		change_island_dude(dude)
 		dude.island = self
 		
+	for enemy in other_island.get_enemies():
+		change_island_dude(enemy)
+		enemy.island = self
+		
 	# Update tilemap and remove other island
 	tilemap.force_update()
 	world.remove_island(other_island)
@@ -138,7 +142,7 @@ func change_island_dude(node):
 	node.get_parent().remove_child(node)
 	add_child(node)
 	node.global_position = old_position
-
+	
 func _check_collisions(delta):
 	for edge in collisions.keys():
 		var nearest = INF

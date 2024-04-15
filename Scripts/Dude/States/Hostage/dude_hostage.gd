@@ -10,9 +10,6 @@ func Update(delta: float):
 	
 	if has_parent_named(self, "Player"):
 		Transitioned.emit(self, "IdleRoam")
-	else:
-		print("not")
-	#Need to make a check here for any enemy warriors, if none convert to idleroam state
 	
 func Physics_Update(delta: float):
 	super.Physics_Update(delta)
