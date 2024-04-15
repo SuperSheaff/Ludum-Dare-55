@@ -27,16 +27,23 @@ func _process(delta):
 	
 
 func spawn_dude(is_hostage):
-	var new_dude = dude_scene.instantiate()
-	new_dude.island = self
-	var house = new_dude.find_nearest_house()
-	AudioManager.play("spawn", -9)
-	if house:
-		new_dude.house = house
-		add_child(new_dude)
 	
 	if is_hostage:
-		new_dude.get_node("StateMachine").on_child_transition(DudeState, "DudeHostage")
+		var new_dude = dude_scene.instantiate()
+		new_dude.island = self
+		add_child(new_dude)
+		new_dude.get_node("StateMachine").change_state("Hostage")
+		
+	else:
+		var new_dude = dude_scene.instantiate()
+		new_dude.island = self
+		var house = new_dude.find_nearest_house()
+		AudioManager.play("spawn", -9)
+		if house:
+			new_dude.house = house
+			add_child(new_dude)
+	
+	
 
 	# change hostage state
 
