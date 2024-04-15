@@ -21,6 +21,8 @@ func _process(delta):
 	if _active_islands.size() < MAX_ISLANDS:
 		spawn_islands()
 	despawn_islands()
+	
+	pass
 
 
 func spawn_islands():

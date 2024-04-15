@@ -14,6 +14,8 @@ var other_island = null
 var other_point_tm = Vector2.ZERO
 var local_point_tm = Vector2.ZERO
 
+var collisions = {}
+
 var _mass = 1
 
 
@@ -27,10 +29,7 @@ func _process(delta):
 	
 	_get_aim_direction()		
 	
-	#print(point1.distance_squared_to(point2-position))
-	if point1.distance_squared_to(point2-position) < 5000:
-		if other_island != null:
-			_island_collision(other_island, delta)
+	_check_collisions(delta)
 			
 	_is_moving = Input.is_action_pressed("summon")
 			
@@ -38,9 +37,11 @@ func _process(delta):
 
 	
 func _draw():
-	if other_island != null:
-		draw_line(point1, point2-position, Color.WHITE, 1.0)
-	
+	for key in collisions.keys():
+		for cs in collisions[key]:
+			var pos = cs.position + cs.get_parent().get_parent().position
+			draw_line(area_2d.get_node(key).position, pos-position, Color.WHITE, 5.0)
+
 
 func _get_aim_direction():
 	var screen_scale = (Vector2(get_viewport().size)) / 2# / get_viewport_rect().size)
@@ -48,11 +49,12 @@ func _get_aim_direction():
 	_direction = (mouse_pos - screen_scale).normalized()
 
 
-func _island_collision(other_island, delta):
+func _island_collision(local_cs, other_cs, delta):
 	camera.camera_shake()
-	_collision_physics(other_island, delta)
-	_merge_island()
+	_collision_physics(other_cs.get_parent().get_parent(), delta)
+	_merge_island(local_cs, other_cs)
 	camera.update_camera_zoom_pos()
+	collisions.clear()
 
 
 func _collision_physics(collision, delta):
@@ -67,7 +69,16 @@ func _collision_physics(collision, delta):
 	velocity = new_velocity
 	
 
-func _merge_island():
+func _merge_island(local_cs, other_cs):
+	var tm = other_cs.get_parent().get_parent().tilemap
+	
+	var other_point = other_cs.position
+	var local_point = area_2d.get_node(local_cs).position
+	
+	other_point_tm = tm.local_to_map(other_point)
+	local_point_tm = tilemap.local_to_map(local_point)
+	other_island = other_cs.get_parent().get_parent()
+	
 	# Add edge tiles from new island	
 	for edge in other_island.edges.values():
 		var new = local_point_tm + edge - other_point_tm
@@ -91,6 +102,24 @@ func _merge_island():
 	other_island = null
 	
 
+func _check_collisions(delta):
+	for edge in collisions.keys():
+		var nearest = INF
+		var other_cs = null
+		var edge_obj = area_2d.get_node(edge)
+		
+		for cs in collisions[edge]:
+			var pos = cs.position + cs.get_parent().get_parent().position
+			var dist = edge_obj.position.distance_to(pos - position)
+			if dist < nearest:
+				other_cs = cs
+				nearest = dist
+
+		if nearest < GameData.COLLIDE_THRESHOLD:
+			_island_collision(edge, other_cs, delta)
+			break
+	
+
 func _on_area_2d_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):	
 	var other_shape_owner = area.shape_find_owner(area_shape_index)
 	var other_shape_node = area.shape_owner_get_owner(other_shape_owner)
@@ -98,20 +127,25 @@ func _on_area_2d_area_shape_entered(area_rid, area, area_shape_index, local_shap
 	var local_shape_owner = area_2d.shape_find_owner(local_shape_index)
 	var local_shape_node = area_2d.shape_owner_get_owner(local_shape_owner)
 	
-	var tm = other_shape_node.get_parent().get_parent().tilemap
+	if not collisions.has(local_shape_node.name):
+		collisions[local_shape_node.name] = []
 	
-	var other_point = other_shape_node.position
-	var local_point = local_shape_node.position
-	
-	var temp1 = local_point
-	var temp2 = other_point + other_shape_node.get_parent().get_parent().position
-	
-	point1 = temp1
-	point2 = temp2
-	other_point_tm = tm.local_to_map(other_point)
-	local_point_tm = tilemap.local_to_map(local_point)
-	other_island = other_shape_node.get_parent().get_parent()
+	if not other_shape_node in collisions[local_shape_node.name]:
+		collisions[local_shape_node.name].append(other_shape_node)
 
 
 func _on_area_2d_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
-	pass
+	if len(collisions) == 0:
+		return 
+		
+	var other_shape_owner = area.shape_find_owner(area_shape_index)
+	var other_shape_node = area.shape_owner_get_owner(other_shape_owner)
+	
+	var local_shape_owner = area_2d.shape_find_owner(local_shape_index)
+	var local_shape_node = area_2d.shape_owner_get_owner(local_shape_owner)
+
+	collisions[local_shape_node.name].erase(other_shape_node)
+
+	if len(collisions[local_shape_node.name]) == 0:
+		collisions.erase(local_shape_node.name)
+	
