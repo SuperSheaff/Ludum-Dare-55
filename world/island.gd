@@ -28,7 +28,6 @@ func _process(delta):
 	
 
 func spawn_dude(is_hostage):
-	
 	if is_hostage:
 		var new_dude = dude_scene.instantiate()
 		new_dude.island = self
