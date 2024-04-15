@@ -137,7 +137,10 @@ func change_island(node, point1, point2):
 	
 	
 func change_island_dude(node):
-	GameData.add_population()
+	
+	#NOTE HARRY, I HAD TO COMMENT THIS OUT, NOT SURE WHAT IT DOES
+	#GameData.add_population()
+	
 	var old_position = node.global_position
 	node.get_parent().remove_child(node)
 	add_child(node)

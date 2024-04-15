@@ -26,13 +26,27 @@ func hit():
 		
 func die():
 	current_task.unassign()
-	GameData.remove_population()
+	#NOTE commented out as well, it doesnt have a function
+	#GameData.remove_population()
+	
 	queue_free()
 
 func check_for_task():
 	var closest_task = null
 	var min_distance = INF  # Using a high initial distance to compare against
 	var resource_type = null
+	
+	# Warrior First Priority???
+	if closest_task == null:
+		var barracks_items = island.get_barracks() #get_tree().get_nodes_in_group("Barracks")
+		for barracks in barracks_items:
+			if barracks && GameData.current_ore >= GameData.WARRIOR_COST:
+				GameData.remove_ore(GameData.WARRIOR_COST)
+				var distance = position.distance_to(barracks.position)
+				if distance < min_distance:
+					min_distance = distance
+					closest_task = barracks
+					resource_type = "barracks"
 
 	# First, try to find the closest unassigned food item
 	var food_items = island.get_food() #get_tree().get_nodes_in_group("Food")
@@ -55,18 +69,6 @@ func check_for_task():
 					closest_task = ore
 					resource_type = "ore"
 					
-	# Only check for ore if no unassigned food was found
-	if closest_task == null:
-		var barracks_items = island.get_barracks() #get_tree().get_nodes_in_group("Barracks")
-		for barracks in barracks_items:
-			if barracks && GameData.current_ore >= GameData.WARRIOR_COST:
-				GameData.remove_ore(GameData.WARRIOR_COST)
-				var distance = position.distance_to(barracks.position)
-				if distance < min_distance:
-					min_distance = distance
-					closest_task = barracks
-					resource_type = "barracks"
-
 	# Assign the dude to the resource if one is found
 	if closest_task:
 		closest_task.assign_to_dude()

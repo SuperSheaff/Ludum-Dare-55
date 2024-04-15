@@ -20,6 +20,11 @@ var population = 0
 var max_influence = 0.8
 var available_cells = []
 
+var food_island_weights = {
+	"food": 75,
+	"null": 25
+}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	_get_collision_shape()
@@ -122,34 +127,6 @@ func _physics_process(delta):
 func get_mass():
 	return len(tilemap.get_used_cells(0))
 
-
-#func find_next_position(current_pos, directions):
-	#var possible_positions = []
-	#var checked_positions = []
-	#checked_positions.append(current_pos)  # Start with the current position
-	#
-	#while len(possible_positions) == 0:
-		#var next_positions = []
-		#for pos in checked_positions:
-			#for dir in directions:
-				#var new_pos = pos + dir
-				#if tilemap.get_cell_source_id(0, Vector2i(new_pos)) == -1 and new_pos not in possible_positions:
-					#next_positions.append(new_pos)
-					#
-		## Check if we have any valid next positions that are not already set
-		#for pos in next_positions:
-			#for dir in directions:
-				#var adjacent_pos = pos + dir
-				#if tilemap.get_cell_source_id(0, Vector2i(adjacent_pos)) != -1:
-					#possible_positions.append(pos)
-					#break
-	#
-		#if len(possible_positions) == 0:
-			#checked_positions = next_positions
-#
-	## Randomly select one of the possible positions
-	#return possible_positions[randi() % possible_positions.size()]
-
 # Adjusted function to find the next position
 func find_next_position(current_position, directions):
 	var center = calculate_geometric_center()
@@ -204,7 +181,7 @@ func weighted_choice(items, weights):
 func generate_island():
 	# fancy gen code here
 	
-	var max_tiles = randi_range(1, GameData.player.get_population())
+	var max_tiles = randi_range(randi_range(1, GameData.player.get_population()), GameData.player.get_population())
 	
 	var current_pos = Vector2i(0, 0)
 	tilemap.set_cell(0, current_pos, 2, Vector2i(0, 0))
@@ -226,54 +203,82 @@ func generate_island():
 	var num_tiles = len(tilemap.get_used_cells(0))
 	available_cells = tilemap.get_used_cells(0).duplicate()
 	
-	# FIRST SET
+	# ONE HOUSE SET
 	if num_tiles < 2:
 		var weights = {
-			"food": 75,
-			"null": 25
+			"food": 30,
+			"null": 70
 		}
-		
 		var selected = GameData.weighted_random_choice(weights)
 		add_object(selected)
 		
-	# SECOND SET
-	elif num_tiles < 5:
+	# TWO HOUSE SET
+	elif num_tiles < 4:
 		var weights = {
-			"ore": 75,
-			"null": 25
+			"null": 60,
+			"food": 30,
+			"house": 30
+		}
+		var selected = GameData.weighted_random_choice(weights)
+		add_object(selected)
+		
+	# THREE HOUSE SET
+	elif num_tiles < 9:
+		var weights = {
+			"null": 50,
+			"ore": 30,
+			"food": 10,
+			"house": 10,
+			"barracks": 10
 		}
 		var num_weights = {
-			1: 70,
-			2: 30,
+			1: 90,
+			2: 10
 		}
 		var num_objs = GameData.weighted_random_choice(num_weights)
 		for i in range(num_objs):
 			var selected = GameData.weighted_random_choice(weights)
 			add_object(selected)
-		
-	# THIRD SET
-	elif num_tiles < 9:
+			
+	# FOUR HOUSE SET
+	elif num_tiles < 13:
 		var weights = {
-			"ore": 40,
-			"food": 30,
-			"barracks": 20,
-			"house": 30,
-			"enemy": 20,
-			"null": 20
+			"null": 50,
+			"ore": 30,
+			"food": 10,
+			"house": 10,
+			"barracks": 10
+		}
+		var num_weights = {
+			1: 90,
+			2: 10
+		}
+		var num_objs = GameData.weighted_random_choice(num_weights)
+		for i in range(num_objs):
+			var selected = GameData.weighted_random_choice(weights)
+			add_object(selected)
+			
+	# FIVE HOUSE SET
+	elif num_tiles < 17:
+		var weights = {
+			"enemy": 40,
+			"barracks": 10,
+			"house": 10,
+			"null": 10,
+			"ore": 10,
+			"food": 10,
 		}
 		var num_weights = {
 			1: 40,
 			2: 30,
-			3: 10,
-			4: 20
 		}
 		var num_objs = GameData.weighted_random_choice(num_weights)
 		for i in range(num_objs):
 			var selected = GameData.weighted_random_choice(weights)
-			add_object(selected)
+			add_object(selected, GameData.player.get_population())
 
 
-func add_object(object_type):
+func add_object(object_type, potential_enemy_amount = 0):
 	if object_type == "null":
 		return
 		
@@ -284,21 +289,26 @@ func add_object(object_type):
 	available_cells.erase(pos)
 	var obj = null
 	
-	match(object_type):
-		"food":	#food
-			obj = food_scene.instantiate()
-		"ore":
-			obj = ore_scene.instantiate()
-		"barracks":
-			obj = barracks_scene.instantiate()
-		"house":
-			obj = house_scene.instantiate()
-		"enemy":
-			obj = enemy_scene.instantiate()
-			
+	if object_type == "enemy":
+		var amount_of_enemies = randi_range(1, potential_enemy_amount)
 		
-	obj.coords = pos
-	add_child(obj)
+		for i in amount_of_enemies:
+			obj = enemy_scene.instantiate()
+			obj.position = pos
+			obj.island = self
+			add_child(obj)
+	else:
+		match(object_type):
+			"food":	#food
+				obj = food_scene.instantiate()
+			"ore":
+				obj = ore_scene.instantiate()
+			"barracks":
+				obj = barracks_scene.instantiate()
+			"house":
+				obj = house_scene.instantiate()
+		obj.coords = pos
+		add_child(obj)
 			
 			
 	

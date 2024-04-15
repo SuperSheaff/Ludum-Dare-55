@@ -19,7 +19,7 @@ const WARRIOR_COST = 4
 const BASE_DAMAGE = 1
 const BASE_HEALTH = 5
 const DUDE_MOVE_SPEED = 150
-const MAX_ISLANDS = 25
+const MAX_ISLANDS = 3
 
 var player = null
 var world = null
