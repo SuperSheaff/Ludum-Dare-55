@@ -37,3 +37,11 @@ func on_child_transition(state, new_state_name):
 	new_state.Enter()
 	
 	current_state = new_state
+	
+func change_state(new_state_name):
+	var new_state = states.get(new_state_name.to_lower())
+	if !new_state:
+		return
+		
+	current_state.Exit()
+	new_state.Enter()
