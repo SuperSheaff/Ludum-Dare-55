@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dlqv6dmu2wrya" path="res://Sprites/Environment/Ore-Sheet.png" id="2_05gkq"]
 
 [node name="Ore" type="Node2D"]
+z_index = 1
 script = ExtResource("1_ts5xx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

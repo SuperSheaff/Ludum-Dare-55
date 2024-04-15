@@ -4,10 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://coh4b01foym1s" path="res://Sprites/Environment/Home-Sheet.png" id="2_doh7e"]
 
 [node name="Barracks" type="Node2D"]
+z_index = 1
 script = ExtResource("1_vrhhb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -45)
 texture = ExtResource("2_doh7e")
+offset = Vector2(0, -45)
 hframes = 3
 vframes = 3

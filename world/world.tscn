@@ -4,9 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://0uexbmokxjg6" path="res://world/player.tscn" id="3_7rljs"]
 
 [node name="World" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_5mdvn")
 
 [node name="Player" parent="." instance=ExtResource("3_7rljs")]
-position = Vector2(775, -58)
 motion_mode = 0
 wall_min_slide_angle = 0.261799

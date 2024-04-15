@@ -197,11 +197,11 @@ states/move/position = Vector2(605, 100)
 transitions = ["idle", "move", SubResource("AnimationNodeStateMachineTransition_rvhae"), "move", "idle", SubResource("AnimationNodeStateMachineTransition_ftnou")]
 
 [node name="Dude" type="CharacterBody2D"]
-z_index = 10
+z_index = 1
 script = ExtResource("2_eoksl")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -40)
+position = Vector2(-3, -44)
 texture = ExtResource("1_44xdr")
 hframes = 9
 vframes = 8
