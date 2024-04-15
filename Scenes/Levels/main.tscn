@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://u06ql36qquqn"]
+[gd_scene load_steps=11 format=3 uid="uid://u06ql36qquqn"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/main.gd" id="1_aqap3"]
 [ext_resource type="PackedScene" uid="uid://cndvm7kt7sj42" path="res://Tilemaps/tile_map.tscn" id="2_ik118"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cgi0s30chscjh" path="res://Scenes/Buildings/barracks.tscn" id="5_r5ic8"]
 [ext_resource type="PackedScene" uid="uid://l5riaxieapx4" path="res://Scenes/Environment/cloud.tscn" id="6_14di8"]
 [ext_resource type="PackedScene" uid="uid://chhmxseam8mb6" path="res://Scenes/UI/pause_menu.tscn" id="7_tqgo0"]
+[ext_resource type="PackedScene" uid="uid://dc0njor1mwxkd" path="res://Scenes/Characters/dude.tscn" id="9_jpnaq"]
 
 [sub_resource type="GDScript" id="GDScript_0hur3"]
 
@@ -58,3 +59,6 @@ position = Vector2(-857, -250)
 [node name="Pause" parent="." instance=ExtResource("7_tqgo0")]
 process_mode = 2
 visible = false
+
+[node name="Dude" parent="." instance=ExtResource("9_jpnaq")]
+position = Vector2(-118, 267)
