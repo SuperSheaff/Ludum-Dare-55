@@ -16,13 +16,12 @@ func _ready():
 	_timer.connect("timeout", _on_Timer_timeout)
 	_timer.one_shot = true
 	add_child(_timer)
-	#call_deferred("update_camera_zoom_pos", 0.5)
+	call_deferred("update_camera_zoom_pos", 0.5)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	shake_camera()
-	print(zoom)
 	
 func iso_to_screen(iso):
 	var screen_x = (iso.x - iso.y) * GameData.TILE_WIDTH / 2

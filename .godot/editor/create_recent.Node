@@ -1,3 +1,8 @@
+MarginContainer
+Label
+TextureRect
+HBoxContainer
+CanvasLayer
 Camera2D
 EnemyWarriorAttack
 EnemyHunt
@@ -7,8 +12,3 @@ CharacterBody2D
 RigidBody2D
 TileMap
 AnimationTree
-AnimationPlayer
-Sprite2D
-DudeWarriorPause
-DudeWarriorRoam
-DudeOreBringOreHome

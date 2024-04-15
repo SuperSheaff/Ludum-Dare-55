@@ -10,7 +10,7 @@ var FRICTION : float = 0.1
 
 var current_food = 0
 var current_ore = 0
-var population = 0
+var population = 1
 
 const COLLIDE_THRESHOLD = 25
 const POP_PER_HOUSE = 4
@@ -19,8 +19,11 @@ const WARRIOR_COST = 4
 const BASE_DAMAGE = 1
 const BASE_HEALTH = 5
 const DUDE_MOVE_SPEED = 150
+const MAX_ISLANDS = 25
 
 var player = null
+var world = null
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,12 +41,19 @@ func add_food():
 		if player.get_population() < player.get_population_limit():
 			player.spawn_dude(false)
 			current_food -= DUDE_COST
+			
+	world.food_icon.text = ": " + str(current_food)
 	print("Food: ", current_food)
 	
+
 func add_ore():
 	current_ore += 1
+	world.ore_icon.text = ": " + str(current_ore)
 	print("Ore: ", current_ore)
-
+	
+func remove_ore(amount):
+	current_ore -= amount
+	world.ore_icon.text = ": " + str(current_ore)
 
 
 func weighted_random_choice(weights):

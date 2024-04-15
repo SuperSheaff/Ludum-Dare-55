@@ -1,7 +1,7 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1713183970
+::res://::1713193146
 default_bus_layout.tres::AudioBusLayout::8699470925426111430::1713091539::0::1::::<><>::
-GameData.gd::GDScript::-1::1713183150::0::1::::<>Node<>::
+GameData.gd::GDScript::-1::1713189790::0::1::::<>Node<>::
 icon.svg::CompressedTexture2D::4727516312106130390::1713091539::1713091641::1::::<><>::
 ::res://Audio/::1713169865
 awful_music.ogg::AudioStreamOggVorbis::2695644556504689790::1713169847::1713169847::1::::<><>::
@@ -12,26 +12,26 @@ food.wav::AudioStreamWAV::584023040010236043::1713091539::1713091641::1::::<><>:
 ore.wav::AudioStreamWAV::3008006516963344506::1713091539::1713091641::1::::<><>::
 spawn.wav::AudioStreamWAV::7394731930053660615::1713091539::1713091641::1::::<><>::
 ::res://Scenes/::1713095711
-::res://Scenes/Buildings/::1713183941
-barracks.tscn::PackedScene::5212041029731174081::1713183941::0::1::::<><>::res://Scripts/barracks.gd<>uid://coh4b01foym1s::::res://Sprites/Environment/Home-Sheet.png
-house.tscn::PackedScene::4943164824557808316::1713183941::0::1::::<><>::res://Scripts/house.gd<>uid://coh4b01foym1s::::res://Sprites/Environment/Home-Sheet.png
-monolith.tscn::PackedScene::4997975359272681868::1713183941::0::1::::<><>::uid://bbxi8enue3gds::::res://Sprites/Environment/Monument-Sheet.png<>res://Scripts/monolith.gd
-::res://Scenes/Characters/::1713183941
-dude.tscn::PackedScene::7352055338044796195::1713183940::0::1::::<><>::uid://jsvgdp00ty3l::::res://Sprites/Little Dude/LittleDude-Sheet.png<>res://Scripts/Dude/dude.gd<>res://Scripts/Dude/dude_state_machine.gd<>res://Scripts/Dude/States/Idle/dude_idle_pause.gd<>res://Scripts/Dude/States/Idle/dude_idle_roam.gd<>res://Scripts/Dude/States/Collect Food/dude_food_move_to_food.gd<>res://Scripts/Dude/States/Collect Food/dude_food_collect.gd<>res://Scripts/Dude/States/Collect Food/dude_food_bring_food_home.gd<>res://Scripts/Dude/States/Collect Ore/dude_ore_move_to_ore.gd<>res://Scripts/Dude/States/Collect Ore/dude_ore_collect.gd<>res://Scripts/Dude/States/Collect Ore/dude_ore_bring_ore_home.gd<>res://Scripts/Dude/States/Warrior/dude_warrior_roam.gd<>res://Scripts/Dude/States/Warrior/dude_warrior_pause.gd<>res://Scripts/Dude/States/Hostage/dude_hostage.gd<>res://Scripts/Dude/States/Warrior/dude_warrior_hunt.gd<>res://Scripts/Dude/States/Warrior/dude_warrior_attack.gd
-enemy.tscn::PackedScene::6443848870250439949::1713183980::0::1::::<><>::uid://jsvgdp00ty3l::::res://Sprites/Little Dude/LittleDude-Sheet.png<>res://Scripts/Enemy/enemy.gd<>res://Scripts/Enemy/enemy_state_machine.gd<>res://Scripts/Enemy/States/enemy_warrior_pause.gd<>res://Scripts/Enemy/States/enemy_warrior_roam.gd<>res://Scripts/Enemy/enemy_warrior_hunt.gd
-::res://Scenes/Emitters/::1713183941
+::res://Scenes/Buildings/::1713193049
+barracks.tscn::PackedScene::5212041029731174081::1713193049::0::1::::<><>::res://Scripts/barracks.gd<>uid://coh4b01foym1s::::res://Sprites/Environment/Home-Sheet.png
+house.tscn::PackedScene::4943164824557808316::1713193049::0::1::::<><>::res://Scripts/house.gd<>uid://coh4b01foym1s::::res://Sprites/Environment/Home-Sheet.png
+monolith.tscn::PackedScene::4997975359272681868::1713193049::0::1::::<><>::uid://bbxi8enue3gds::::res://Sprites/Environment/Monument-Sheet.png<>res://Scripts/monolith.gd
+::res://Scenes/Characters/::1713193049
+dude.tscn::PackedScene::7352055338044796195::1713193049::0::1::::<><>::uid://jsvgdp00ty3l::::res://Sprites/Little Dude/LittleDude-Sheet.png<>res://Scripts/Dude/dude.gd<>res://Scripts/Dude/dude_state_machine.gd<>res://Scripts/Dude/States/Idle/dude_idle_pause.gd<>res://Scripts/Dude/States/Idle/dude_idle_roam.gd<>res://Scripts/Dude/States/Collect Food/dude_food_move_to_food.gd<>res://Scripts/Dude/States/Collect Food/dude_food_collect.gd<>res://Scripts/Dude/States/Collect Food/dude_food_bring_food_home.gd<>res://Scripts/Dude/States/Collect Ore/dude_ore_move_to_ore.gd<>res://Scripts/Dude/States/Collect Ore/dude_ore_collect.gd<>res://Scripts/Dude/States/Collect Ore/dude_ore_bring_ore_home.gd<>res://Scripts/Dude/States/Warrior/dude_warrior_roam.gd<>res://Scripts/Dude/States/Warrior/dude_warrior_pause.gd<>res://Scripts/Dude/States/Hostage/dude_hostage.gd<>res://Scripts/Dude/States/Warrior/dude_warrior_hunt.gd<>res://Scripts/Dude/States/Warrior/dude_warrior_attack.gd
+enemy.tscn::PackedScene::6443848870250439949::1713193049::0::1::::<><>::uid://jsvgdp00ty3l::::res://Sprites/Little Dude/LittleDude-Sheet.png<>res://Scripts/Enemy/enemy.gd<>res://Scripts/Enemy/enemy_state_machine.gd<>res://Scripts/Enemy/States/enemy_warrior_pause.gd<>res://Scripts/Enemy/States/enemy_warrior_roam.gd<>res://Scripts/Enemy/States/enemy_warrior_hunt.gd<>res://Scripts/Enemy/States/enemy_warrior_attack.gd
+::res://Scenes/Emitters/::1713193049
 food_particle.gd::GDScript::-1::1713091539::0::1::::<>CPUParticles2D<>::
-food_particle.tscn::PackedScene::4517437828191220572::1713183941::0::1::::<><>::uid://bkjqqudr3706i::::res://Sprites/Environment/food_particle.png<>res://Scenes/Emitters/food_particle.gd
-ore_particle.tscn::PackedScene::3921112092479845991::1713183941::0::1::::<><>::uid://c8fungynk08w0::::res://Sprites/Environment/ore_particle.png<>res://Scenes/Emitters/food_particle.gd
+food_particle.tscn::PackedScene::4517437828191220572::1713193049::0::1::::<><>::uid://bkjqqudr3706i::::res://Sprites/Environment/food_particle.png<>res://Scenes/Emitters/food_particle.gd
+ore_particle.tscn::PackedScene::3921112092479845991::1713193049::0::1::::<><>::uid://c8fungynk08w0::::res://Sprites/Environment/ore_particle.png<>res://Scenes/Emitters/food_particle.gd
 ::res://Scenes/Environment/::1713169847
 cloud.gd::GDScript::-1::1713169847::0::1::::<>Node2D<>::
 cloud.tscn::PackedScene::835055123767767015::1713091539::0::1::::<><>::res://Scenes/Environment/cloud.gd<>uid://ckniockffreh::::res://Sprites/Environment/cloud_1.png
 ::res://Scenes/Levels/::1713173579
 main.gd::GDScript::-1::1713169847::0::1::::<>Node2D<>::
 main.tscn::PackedScene::1457297738532288093::1713173579::0::1::::<><>::res://Scenes/Levels/main.gd<>uid://cndvm7kt7sj42::::res://Tilemaps/tile_map.tscn<>uid://ccorg5bj766v5::::res://Scenes/Buildings/house.tscn<>uid://2hlkl607tjp6::::res://Scenes/Resources/ore.tscn<>uid://fcn2r66phgcl::::res://Scenes/Resources/food.tscn<>uid://cgi0s30chscjh::::res://Scenes/Buildings/barracks.tscn<>uid://l5riaxieapx4::::res://Scenes/Environment/cloud.tscn<>uid://chhmxseam8mb6::::res://Scenes/UI/pause_menu.tscn<>uid://dc0njor1mwxkd::::res://Scenes/Characters/dude.tscn
-::res://Scenes/Resources/::1713183941
-food.tscn::PackedScene::355911453254392367::1713183940::0::1::::<><>::res://Scripts/food.gd<>uid://dovncermk2v4h::::res://Sprites/Environment/Food-Sheet.png
-ore.tscn::PackedScene::1910235794189967417::1713183941::0::1::::<><>::res://Scripts/ore.gd<>uid://dlqv6dmu2wrya::::res://Sprites/Environment/Ore-Sheet.png
+::res://Scenes/Resources/::1713193049
+food.tscn::PackedScene::355911453254392367::1713193048::0::1::::<><>::res://Scripts/food.gd<>uid://dovncermk2v4h::::res://Sprites/Environment/Food-Sheet.png
+ore.tscn::PackedScene::1910235794189967417::1713193049::0::1::::<><>::res://Scripts/ore.gd<>uid://dlqv6dmu2wrya::::res://Sprites/Environment/Ore-Sheet.png
 ::res://Scenes/UI/::1713095711
 pause_menu.gd::GDScript::-1::1713091539::0::1::::<>Control<>::
 pause_menu.tscn::PackedScene::5279384545920724665::1713091539::0::1::::<><>::res://Scenes/UI/pause_menu.gd
@@ -43,9 +43,9 @@ game_controller.gd::GDScript::-1::1713171045::0::1::::<>Node<>::
 house.gd::GDScript::-1::1713177686::0::1::::House<>StaticBody2D<>::
 monolith.gd::GDScript::-1::1713177686::0::1::::Monolith<>Node2D<>::
 ore.gd::GDScript::-1::1713177686::0::1::::Ore<>Node2D<>::
-::res://Scripts/Dude/::1713181866
-dude.gd::GDScript::-1::1713181866::0::1::::Dude<>CharacterBody2D<>::
-dude_state.gd::GDScript::-1::1713091539::0::1::::DudeState<>Node<>::
+::res://Scripts/Dude/::1713185267
+dude.gd::GDScript::-1::1713184588::0::1::::Dude<>CharacterBody2D<>::
+dude_state.gd::GDScript::-1::1713185267::0::1::::DudeState<>Node<>::
 dude_state_machine.gd::GDScript::-1::1713177830::0::1::::<>Node<>::
 ::res://Scripts/Dude/States/::1713173579
 ::res://Scripts/Dude/States/Collect Food/::1713172455
@@ -58,8 +58,8 @@ dude_ore.gd::GDScript::-1::1713091539::0::1::::DudeOre<>DudeState<>::
 dude_ore_bring_ore_home.gd::GDScript::-1::1713172304::0::1::::DudeOreBringOreHome<>DudeOre<>::
 dude_ore_collect.gd::GDScript::-1::1713172455::0::1::::DudeOreCollect<>DudeOre<>::
 dude_ore_move_to_ore.gd::GDScript::-1::1713172287::0::1::::DudeOreMoveToOre<>DudeOre<>::
-::res://Scripts/Dude/States/Hostage/::1713180747
-dude_hostage.gd::GDScript::-1::1713180747::0::1::::DudeHostage<>DudeState<>::
+::res://Scripts/Dude/States/Hostage/::1713184623
+dude_hostage.gd::GDScript::-1::1713184623::0::1::::DudeHostage<>DudeState<>::
 ::res://Scripts/Dude/States/Idle/::1713176130
 dude_idle.gd::GDScript::-1::1713169847::0::1::::DudeIdle<>DudeState<>::
 dude_idle_pause.gd::GDScript::-1::1713091539::0::1::::DudeIdlePause<>DudeIdle<>::
@@ -70,16 +70,16 @@ dude_warrior_attack.gd::GDScript::-1::1713183323::0::1::::DudeWarriorAttack<>Dud
 dude_warrior_hunt.gd::GDScript::-1::1713183352::0::1::::DudeWarriorHunt<>DudeWarrior<>::
 dude_warrior_pause.gd::GDScript::-1::1713091539::0::1::::DudeWarriorPause<>DudeWarrior<>::
 dude_warrior_roam.gd::GDScript::-1::1713182788::0::1::::DudeWarriorRoam<>DudeWarrior<>::
-::res://Scripts/Enemy/::1713183854
+::res://Scripts/Enemy/::1713183980
 enemy.gd::GDScript::-1::1713183610::0::1::::Enemy<>CharacterBody2D<>::
 enemy_state.gd::GDScript::-1::1713180747::0::1::::EnemyState<>Node<>::
 enemy_state_machine.gd::GDScript::-1::1713180747::0::1::::<>Node<>::
-enemy_warrior_hunt.gd::GDScript::-1::1713183854::0::1::::EnemyHunt<>EnemyState<>::
-::res://Scripts/Enemy/States/::1713183970
+::res://Scripts/Enemy/States/::1713184657
 enemy_warrior.gd::GDScript::-1::1713180747::0::1::::EnemyWarrior<>EnemyState<>::
-enemy_warrior_attack.gd::GDScript::-1::1713183967::0::1::::DudeWarriorAttack<>DudeWarrior<>::
+enemy_warrior_attack.gd::GDScript::-1::1713184110::0::1::::EnemyWarriorAttack<>EnemyState<>::
+enemy_warrior_hunt.gd::GDScript::-1::1713184123::0::1::::EnemyHunt<>EnemyState<>::
 enemy_warrior_pause.gd::GDScript::-1::1713180747::0::1::::EnemyWarriorPause<>EnemyWarrior<>::
-enemy_warrior_roam.gd::GDScript::-1::1713183938::0::1::::EnemyWarriorRoam<>EnemyWarrior<>::
+enemy_warrior_roam.gd::GDScript::-1::1713184657::0::1::::EnemyWarriorRoam<>EnemyWarrior<>::
 ::res://Sprites/::1713095711
 colour_scheme.png::CompressedTexture2D::1312134412625797522::1713091539::1713091641::1::::<><>::
 ::res://Sprites/Environment/::1713169865
@@ -97,11 +97,11 @@ LittleDude-Sheet.png::CompressedTexture2D::670144345839078699::1713173579::17130
 ::res://Tilemaps/::1713180971
 island_tileset.tres::TileSet::7896254928078194485::1713180971::0::1::::<><>::uid://ce0f31dxvkson::::res://Sprites/Environment/TileSet.png
 tile_map.tscn::PackedScene::5692787651419760393::1713169837::0::1::::<><>::uid://ce0f31dxvkson::::res://Sprites/Environment/TileSet.png
-::res://world/::1713183951
-Camera2D.gd::GDScript::-1::1713169847::0::1::::<>Camera2D<>::
-island.gd::GDScript::-1::1713182443::0::1::::<>CharacterBody2D<>::
-island.tscn::PackedScene::5484982031521006201::1713183941::0::1::::<><>::res://world/island.gd<>uid://dkrafu0ql6y02::::res://Tilemaps/island_tileset.tres
-player.gd::GDScript::-1::1713180747::0::1::::<><>::
-player.tscn::PackedScene::1796292658974260647::1713183941::0::1::::<><>::uid://cke738yixhthx::::res://world/island.tscn<>res://world/player.gd<>res://world/Camera2D.gd<>uid://ccorg5bj766v5::::res://Scenes/Buildings/house.tscn<>uid://ckniockffreh::::res://Sprites/Environment/cloud_1.png<>uid://hgttcdguyytc::::res://Sprites/Environment/paralax_maybe.png<>uid://fcn2r66phgcl::::res://Scenes/Resources/food.tscn<>uid://2hlkl607tjp6::::res://Scenes/Resources/ore.tscn<>uid://cgi0s30chscjh::::res://Scenes/Buildings/barracks.tscn
-world.gd::GDScript::-1::1713182462::0::1::::<>Node2D<>::
-world.tscn::PackedScene::3568796846647947060::1713183951::0::1::::<><>::res://world/world.gd<>uid://0uexbmokxjg6::::res://world/player.tscn
+::res://world/::1713193049
+Camera2D.gd::GDScript::-1::1713192877::0::1::::<>Camera2D<>::
+island.gd::GDScript::-1::1713191094::0::1::::<>CharacterBody2D<>::
+island.tscn::PackedScene::5484982031521006201::1713193049::0::1::::<><>::res://world/island.gd<>uid://dkrafu0ql6y02::::res://Tilemaps/island_tileset.tres
+player.gd::GDScript::-1::1713192659::0::1::::<><>::
+player.tscn::PackedScene::1796292658974260647::1713193049::0::1::::<><>::uid://cke738yixhthx::::res://world/island.tscn<>res://world/player.gd<>res://world/Camera2D.gd<>uid://ccorg5bj766v5::::res://Scenes/Buildings/house.tscn<>uid://ckniockffreh::::res://Sprites/Environment/cloud_1.png<>uid://hgttcdguyytc::::res://Sprites/Environment/paralax_maybe.png
+world.gd::GDScript::-1::1713192922::0::1::::<>Node2D<>::
+world.tscn::PackedScene::3568796846647947060::1713193049::0::1::::<><>::res://world/world.gd<>uid://0uexbmokxjg6::::res://world/player.tscn<>uid://cke738yixhthx::::res://world/island.tscn<>uid://fcn2r66phgcl::::res://Scenes/Resources/food.tscn

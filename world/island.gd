@@ -260,6 +260,9 @@ func add_object(object_type):
 	if object_type == "null":
 		return
 		
+	if len(available_cells) == 0:
+		return
+	
 	var pos = available_cells.pick_random()
 	available_cells.erase(pos)
 	var obj = null

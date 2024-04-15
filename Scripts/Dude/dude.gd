@@ -26,6 +26,7 @@ func hit():
 		
 func die():
 	current_task.unassign()
+	GameData.remove_population()
 	queue_free()
 
 func check_for_task():
@@ -59,7 +60,7 @@ func check_for_task():
 		var barracks_items = island.get_barracks() #get_tree().get_nodes_in_group("Barracks")
 		for barracks in barracks_items:
 			if barracks && GameData.current_ore >= GameData.WARRIOR_COST:
-				GameData.current_ore -= GameData.WARRIOR_COST
+				GameData.remove_ore(GameData.WARRIOR_COST)
 				var distance = position.distance_to(barracks.position)
 				if distance < min_distance:
 					min_distance = distance

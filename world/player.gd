@@ -137,6 +137,7 @@ func change_island(node, point1, point2):
 	
 	
 func change_island_dude(node):
+	GameData.add_population()
 	var old_position = node.global_position
 	node.get_parent().remove_child(node)
 	add_child(node)
@@ -177,6 +178,9 @@ func _on_area_2d_area_shape_entered(area_rid, area, area_shape_index, local_shap
 func _on_area_2d_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
 	if len(collisions) == 0:
 		return 
+		
+	if area == null:
+		return
 		
 	var other_shape_owner = area.shape_find_owner(area_shape_index)
 	var other_shape_node = area.shape_owner_get_owner(other_shape_owner)
