@@ -104,32 +104,40 @@ func _merge_island(local_cs, other_cs):
 			_edge_shapes.erase(new)
 			
 	
-	for house in get_house():
-		pass
+	for house in other_island.get_house():
+		change_island(house, local_point_tm, other_point_tm)
 		
-	for food in get_food():
-		pass
+	for food in other_island.get_food():
+		change_island(food, local_point_tm, other_point_tm)
 		
-	for barracks in get_barracks():
-		pass
+	for barracks in other_island.get_barracks():
+		change_island(barracks, local_point_tm, other_point_tm)
 		
-	for ore in get_ore():
-		pass
+	for ore in other_island.get_ore():
+		change_island(ore, local_point_tm, other_point_tm)
 		
-	for dude in get_dudes():
-		pass
+	for dude in other_island.get_dudes():
+		change_island_dude(dude)
+		dude.island = self
 		
 	# Update tilemap and remove other island
 	tilemap.force_update()
 	world.remove_island(other_island)
 	other_island = null
 	
-#func reparent():
-	#var old_position = node.global_position
-	#node.get_parent().remove_child(node)
-	#new_parent.add_child(node)
-	#node.global_position = old_position
-
+	
+func change_island(node, point1, point2):
+	node.get_parent().remove_child(node)
+	add_child(node)
+	node.position = tilemap.map_to_local(Vector2(point1) + node.coords - Vector2(point2))
+	node.coords = Vector2(point1) + node.coords - Vector2(point2)
+	
+	
+func change_island_dude(node):
+	var old_position = node.global_position
+	node.get_parent().remove_child(node)
+	add_child(node)
+	node.global_position = old_position
 
 func _check_collisions(delta):
 	for edge in collisions.keys():

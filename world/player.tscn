@@ -16,10 +16,7 @@ script = ExtResource("2_65w22")
 [node name="TileMap" parent="." index="0"]
 layer_0/tile_data = PackedInt32Array(65535, 2, 0, 65534, 2, 0, -2, 2, 0, -1, 2, 0, 0, 2, 0, 65536, 2, 0, 131071, 2, 0, 131070, 2, 0, -65536, 2, 0, -3, 2, 0, 65533, 2, 0, 65532, 2, 0, -4, 2, 0, -5, 2, 0, -65540, 2, 0, -65541, 2, 0, -131076, 2, 0, -131075, 2, 0, -65539, 2, 0, -65538, 2, 0, -131074, 2, 0, -65537, 2, 0, -131072, 2, 0, -131073, 2, 0, -196608, 2, 0, -131071, 2, 0, -65535, 2, 0, 1, 2, 0, 131069, 2, 0, 131068, 2, 0)
 
-[node name="House" parent="." index="2" groups=["Houses"] instance=ExtResource("4_q7pwu")]
-position = Vector2(1, -71)
-
-[node name="Camera2D" type="Camera2D" parent="." index="3"]
+[node name="Camera2D" type="Camera2D" parent="." index="2"]
 zoom = Vector2(0.4, 0.4)
 position_smoothing_enabled = true
 script = ExtResource("3_xgala")
@@ -59,14 +56,21 @@ offset_right = 7202.0
 offset_bottom = 3981.0
 texture = ExtResource("6_4n7y5")
 
+[node name="House" parent="." index="3" groups=["Houses"] instance=ExtResource("4_q7pwu")]
+position = Vector2(1, -71)
+coords = Vector2(-1, -1)
+
 [node name="Food" parent="." index="4" instance=ExtResource("7_5an03")]
 position = Vector2(297, 6)
+coords = Vector2(1, -2)
 
 [node name="Ore" parent="." index="5" instance=ExtResource("8_sfjl1")]
 position = Vector2(-292, -75)
+coords = Vector2(-4, 1)
 
 [node name="Barracks" parent="." index="6" instance=ExtResource("9_cquhb")]
 position = Vector2(-154, -219)
+coords = Vector2(-5, -2)
 
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
 [connection signal="area_shape_exited" from="Area2D" to="." method="_on_area_2d_area_shape_exited"]

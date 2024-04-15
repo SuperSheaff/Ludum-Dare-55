@@ -56,7 +56,7 @@ transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition
 script = ExtResource("1_ijg66")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -45)
+position = Vector2(-80, -80)
 texture = ExtResource("2_6nar8")
 hframes = 3
 vframes = 3

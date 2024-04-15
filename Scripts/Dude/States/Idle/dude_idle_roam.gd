@@ -24,5 +24,5 @@ func randomize_wander():
 	var tilemap = dude.island.tilemap
 	var valid_cells = dude.island.tilemap.get_used_cells(0)
 	var random_cell = valid_cells.pick_random()
-	target_position = tilemap.map_to_local(random_cell) + Vector2(0.0, GameData.TILE_HEIGHT)
+	target_position = tilemap.map_to_local(random_cell)# + Vector2(0.0, GameData.TILE_HEIGHT)
 	print(target_position)

@@ -5,7 +5,8 @@ extends CharacterBody2D
 const dude_scene = preload("res://Scenes/Characters/dude.tscn")
 const house_scene = preload("res://Scenes/Buildings/house.tscn")
 const food_scene = preload("res://Scenes/Resources/food.tscn")
-const barracks_scene = preload("res://Scripts/barracks.gd")
+const ore_scene = preload("res://Scenes/Resources/ore.tscn")
+const barracks_scene = preload("res://Scenes/Buildings/barracks.tscn")
 
 #var velocity = Vector2.ZERO
 var _direction = Vector2.ZERO
@@ -103,12 +104,25 @@ func _generate_island():
 	_get_collision_edge(false)
 	
 	var house = house_scene.instantiate()
-	house.position = tilemap.map_to_local(Vector2(-1,-1))
+	house.coords = Vector2(-1,-1)
+	#house.position = tilemap.map_to_local(house.coords)
 	add_child(house)
 	
 	var farm = food_scene.instantiate()
-	farm.position = tilemap.map_to_local(Vector2(-2, 1))
+	farm.coords = Vector2(-2, 1)
+	#farm.position = tilemap.map_to_local(farm.coords)
 	add_child(farm)
+	
+	var ore = ore_scene.instantiate()
+	ore.coords = Vector2(0, -1)
+	#ore.position = tilemap.map_to_local(ore.coords)
+	add_child(ore)
+	
+	var barracks = barracks_scene.instantiate()
+	barracks.coords = Vector2(0, 1)
+	#barracks.position = tilemap.map_to_local(barracks.coords)
+	add_child(barracks)
+	
 	
 	spawn_dude(true)
 	
