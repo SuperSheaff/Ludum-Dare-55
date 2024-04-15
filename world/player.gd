@@ -25,7 +25,6 @@ func _ready():
 	_get_collision_shape()
 	_get_collision_edge(true)
 	spawn_dude(false)
-	spawn_dude(false)
 	
 
 
@@ -133,8 +132,8 @@ func _merge_island(local_cs, other_cs):
 func change_island(node, point1, point2):
 	node.get_parent().remove_child(node)
 	add_child(node)
-	node.position = tilemap.map_to_local(Vector2(point1) + node.coords - Vector2(point2))
-	node.coords = Vector2(point1) + node.coords - Vector2(point2)
+	node.position = tilemap.map_to_local(Vector2(point1) + Vector2(node.coords) - Vector2(point2))
+	node.coords = Vector2(point1) + Vector2(node.coords) - Vector2(point2)
 	
 	
 func change_island_dude(node):
@@ -185,7 +184,8 @@ func _on_area_2d_area_shape_exited(area_rid, area, area_shape_index, local_shape
 	var local_shape_owner = area_2d.shape_find_owner(local_shape_index)
 	var local_shape_node = area_2d.shape_owner_get_owner(local_shape_owner)
 
-	collisions[local_shape_node.name].erase(other_shape_node)
+	if collisions.has(local_shape_node.name):
+		collisions[local_shape_node.name].erase(other_shape_node)
 
 	if len(collisions[local_shape_node.name]) == 0:
 		collisions.erase(local_shape_node.name)

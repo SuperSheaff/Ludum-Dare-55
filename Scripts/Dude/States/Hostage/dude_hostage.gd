@@ -4,6 +4,11 @@ class_name DudeHostage
 func Enter():
 	super.Enter()
 	dude_animator.play("enemy_idle")
+	dude.is_hostage = true
+	
+func Exit():
+	super.Exit()
+	dude.is_hostage = false
 	
 func Update(delta: float):
 	super.Update(delta)

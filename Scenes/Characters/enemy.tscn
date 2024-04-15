@@ -1,10 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://cx2piql14px8h"]
+[gd_scene load_steps=13 format=3 uid="uid://cx2piql14px8h"]
 
 [ext_resource type="Texture2D" uid="uid://jsvgdp00ty3l" path="res://Sprites/Little Dude/LittleDude-Sheet.png" id="1_7ncpv"]
 [ext_resource type="Script" path="res://Scripts/Enemy/enemy.gd" id="1_wiw45"]
 [ext_resource type="Script" path="res://Scripts/Enemy/enemy_state_machine.gd" id="2_x82u4"]
 [ext_resource type="Script" path="res://Scripts/Enemy/States/enemy_warrior_pause.gd" id="3_phcae"]
 [ext_resource type="Script" path="res://Scripts/Enemy/States/enemy_warrior_roam.gd" id="4_xqv4u"]
+[ext_resource type="Script" path="res://Scripts/Enemy/States/enemy_warrior_hunt.gd" id="6_yjj65"]
+[ext_resource type="Script" path="res://Scripts/Enemy/States/enemy_warrior_attack.gd" id="7_ecwfg"]
 
 [sub_resource type="Animation" id="Animation_hrf0y"]
 length = 0.001
@@ -107,5 +109,15 @@ enemy_animator = NodePath("../../AnimationPlayer")
 
 [node name="EnemyWarriorRoam" type="Node" parent="Statemachine" node_paths=PackedStringArray("enemy", "enemy_animator")]
 script = ExtResource("4_xqv4u")
+enemy = NodePath("../..")
+enemy_animator = NodePath("../../AnimationPlayer")
+
+[node name="EnemyWarriorHunt" type="Node" parent="Statemachine" node_paths=PackedStringArray("enemy", "enemy_animator")]
+script = ExtResource("6_yjj65")
+enemy = NodePath("../..")
+enemy_animator = NodePath("../../AnimationPlayer")
+
+[node name="EnemyWarriorAttack" type="Node" parent="Statemachine" node_paths=PackedStringArray("enemy", "enemy_animator")]
+script = ExtResource("7_ecwfg")
 enemy = NodePath("../..")
 enemy_animator = NodePath("../../AnimationPlayer")

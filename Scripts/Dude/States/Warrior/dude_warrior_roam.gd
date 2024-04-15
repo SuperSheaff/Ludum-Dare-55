@@ -2,17 +2,27 @@ extends DudeWarrior
 class_name DudeWarriorRoam
 
 var target_position: Vector2
+var enemies = []
 
 func Enter():
 	super.Enter()
 	randomize_wander()
 	dude_animator.play("warrior_move")
+	enemies = dude.island.get_enemies()
+	print(enemies)
+	
+
 
 func Update(delta: float):
 	super.Update(delta)
 	
 	if dude.position.distance_to(target_position) < 10.0:
 		Transitioned.emit(self, "WarriorPause")
+		
+	if len(enemies) > 0:
+		dude.target = enemies.pick_random()
+		print(dude.target)
+		Transitioned.emit(self, "WarriorHunt")
 
 func Physics_Update(delta: float):
 	super.Physics_Update(delta)

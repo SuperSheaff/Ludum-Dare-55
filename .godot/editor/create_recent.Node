@@ -1,5 +1,8 @@
-DudeHostage
+Camera2D
+EnemyWarriorAttack
+EnemyHunt
 Node
+DudeHostage
 CharacterBody2D
 RigidBody2D
 TileMap
@@ -9,7 +12,3 @@ Sprite2D
 DudeWarriorPause
 DudeWarriorRoam
 DudeOreBringOreHome
-DudeOreCollect
-DudeOreMoveToOre
-Camera2D
-DudeIdle

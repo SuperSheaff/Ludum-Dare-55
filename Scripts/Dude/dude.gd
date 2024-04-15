@@ -4,6 +4,10 @@ class_name Dude
 var task = null
 var house : House
 var island = null
+var target = null
+var health = GameData.BASE_HEALTH
+var current_task = null
+var is_hostage = false
 
 func _physics_process(delta):
 	move_and_slide()
@@ -14,6 +18,15 @@ func check_and_flip_sprite():
 		$Sprite2D.flip_h = false
 	else:
 		$Sprite2D.flip_h = true
+
+func hit():
+	health -= GameData.BASE_DAMAGE
+	if health <= 0:
+		die()
+		
+func die():
+	current_task.unassign()
+	queue_free()
 
 func check_for_task():
 	var closest_task = null
@@ -56,6 +69,7 @@ func check_for_task():
 	# Assign the dude to the resource if one is found
 	if closest_task:
 		closest_task.assign_to_dude()
+		current_task = closest_task
 		return closest_task
 
 	return null

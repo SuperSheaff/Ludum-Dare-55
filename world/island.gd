@@ -17,14 +17,23 @@ var edges = {}
 var _edge_shapes = {}
 
 var population = 0
+var max_influence = 0.8
+var available_cells = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_generate_island()
+	_get_collision_shape()
+	_get_collision_edge(false)
+	
+	#generate_island()
+	#_generate_island()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	#if Input.is_action_just_pressed("summon"):
+		#tilemap.clear()
+		#generate_island()
 	pass
 
 func spawn_dude(is_hostage):
@@ -114,35 +123,188 @@ func get_mass():
 	return len(tilemap.get_used_cells(0))
 
 
+#func find_next_position(current_pos, directions):
+	#var possible_positions = []
+	#var checked_positions = []
+	#checked_positions.append(current_pos)  # Start with the current position
+	#
+	#while len(possible_positions) == 0:
+		#var next_positions = []
+		#for pos in checked_positions:
+			#for dir in directions:
+				#var new_pos = pos + dir
+				#if tilemap.get_cell_source_id(0, Vector2i(new_pos)) == -1 and new_pos not in possible_positions:
+					#next_positions.append(new_pos)
+					#
+		## Check if we have any valid next positions that are not already set
+		#for pos in next_positions:
+			#for dir in directions:
+				#var adjacent_pos = pos + dir
+				#if tilemap.get_cell_source_id(0, Vector2i(adjacent_pos)) != -1:
+					#possible_positions.append(pos)
+					#break
+	#
+		#if len(possible_positions) == 0:
+			#checked_positions = next_positions
+#
+	## Randomly select one of the possible positions
+	#return possible_positions[randi() % possible_positions.size()]
+
+# Adjusted function to find the next position
+func find_next_position(current_position, directions):
+	var center = calculate_geometric_center()
+	var possible_positions = []
+	var position_scores = []
+
+	for dir in directions:
+		var new_pos = current_position + dir
+		if tilemap.get_cell_source_id(0, Vector2i(new_pos)) == -1 and new_pos not in possible_positions:
+			possible_positions.append(new_pos)
+			# Calculate a score based on the distance to the center, closer is better
+			var score = Vector2(center).distance_to(new_pos)
+			position_scores.append(score)
+
+	# Normalize scores (lower distance means higher probability)
+	if position_scores.size() > 0:
+		var min_score = position_scores.min()
+		var max_score = position_scores.max()
+		var normalized_scores = []
+		for score in position_scores:
+			var normalized_score = 1.0 - (score - min_score) / (max_score - min_score)
+			normalized_score = max(normalized_score, 1.0 - max_influence)
+			normalized_scores.append(normalized_score)
+
+		# Use a weighted random choice based on normalized scores
+		return weighted_choice(possible_positions, normalized_scores)
+	return current_position
+
+# Function to calculate the geometric center of the set tiles
+func calculate_geometric_center():
+	var sum = Vector2i.ZERO
+	for tile in tilemap.get_used_cells(0):
+		sum += Vector2i(tile)
+	return sum / len(tilemap.get_used_cells(0))
+
+# Weighted choice function
+func weighted_choice(items, weights):
+	var total_weight = 0.0
+	for weight in weights:
+		total_weight += weight
+
+	var random_point = randf() * total_weight
+	var current_sum = 0.0
+	for i in range(weights.size()):
+		current_sum += weights[i]
+		if current_sum >= random_point:
+			return items[i]
+	return items[items.size() - 1]
+
 
 # TODO better island generation code 
-func _generate_island():
+func generate_island():
 	# fancy gen code here
+	
+	var max_tiles = randi_range(1, GameData.player.get_population())
+	
+	var current_pos = Vector2i(0, 0)
+	tilemap.set_cell(0, current_pos, 2, Vector2i(0, 0))
+	
+	var directions = [
+		Vector2i.RIGHT,
+		Vector2i.LEFT,
+		Vector2i.UP,
+		Vector2i.DOWN
+	]
+	
+	for i in range(1, max_tiles):
+		current_pos = find_next_position(current_pos, directions)
+		tilemap.set_cell(0, current_pos, 2, Vector2i(0, 0))
+		
 	_get_collision_shape()
 	_get_collision_edge(false)
+
+	var num_tiles = len(tilemap.get_used_cells(0))
+	available_cells = tilemap.get_used_cells(0).duplicate()
 	
-	var house = house_scene.instantiate()
-	house.coords = Vector2(-1,-1)
-	#house.position = tilemap.map_to_local(house.coords)
-	add_child(house)
+	if num_tiles < 3:
+		var weights = {
+			"ore": 40,
+			"food": 30,
+			"barracks": 10,
+			"house": 30,
+			"null": 20
+		}
+		var selected = GameData.weighted_random_choice(weights)
+		add_object(selected)
+	elif num_tiles < 9:
+		var weights = {
+			"ore": 40,
+			"food": 30,
+			"barracks": 10,
+			"house": 30,
+			"null": 20
+		}
+		var num_weights = {
+			1: 40,
+			2: 30,
+			3: 10,
+			4: 20
+		}
+		var num_objs = GameData.weighted_random_choice(num_weights)
+		for i in range(num_objs):
+			var selected = GameData.weighted_random_choice(weights)
+			add_object(selected)
+
+
+func add_object(object_type):
+	if object_type == "null":
+		return
+		
+	var pos = available_cells.pick_random()
+	available_cells.erase(pos)
+	var obj = null
 	
-	var farm = food_scene.instantiate()
-	farm.coords = Vector2(-2, 1)
-	#farm.position = tilemap.map_to_local(farm.coords)
-	add_child(farm)
+	match(object_type):
+		"food":	#food
+			obj = food_scene.instantiate()
+		"ore":
+			obj = ore_scene.instantiate()
+		"barracks":
+			obj = barracks_scene.instantiate()
+		"house":
+			obj = house_scene.instantiate()
+			
+		
+	obj.coords = pos
+	add_child(obj)
+			
+			
 	
-	var ore = ore_scene.instantiate()
-	ore.coords = Vector2(0, -1)
-	#ore.position = tilemap.map_to_local(ore.coords)
-	add_child(ore)
+
+	#var house = house_scene.instantiate()
+	#house.coords = Vector2(-1,-1)
+	##house.position = tilemap.map_to_local(house.coords)
+	#add_child(house)
+	#
+	#var farm = food_scene.instantiate()
+	#farm.coords = Vector2(-2, 1)
+	##farm.position = tilemap.map_to_local(farm.coords)
+	#add_child(farm)
+	#
+	#var ore = ore_scene.instantiate()
+	#ore.coords = Vector2(0, -1)
+	##ore.position = tilemap.map_to_local(ore.coords)
+	#add_child(ore)
 	
-	var barracks = barracks_scene.instantiate()
-	barracks.coords = Vector2(0, 1)
-	#barracks.position = tilemap.map_to_local(barracks.coords)
-	add_child(barracks)
+	#var barracks = barracks_scene.instantiate()
+	#barracks.coords = Vector2(0, 1)
+	##barracks.position = tilemap.map_to_local(barracks.coords)
+	#add_child(barracks)
+	#
+	#spawn_enemy()
+	#spawn_dude(true)
 	
-	spawn_enemy()
-	spawn_dude(true)
+	pass
 
 # Add a CollisionShape2D corresponding to the given cell
 func _add_collider(cell):

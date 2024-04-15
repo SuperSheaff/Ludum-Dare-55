@@ -2,17 +2,25 @@ extends EnemyWarrior
 class_name EnemyWarriorRoam
 
 var target_position: Vector2
+var dudes = []
 
 func Enter():
 	super.Enter()
 	randomize_wander()
 	enemy_animator.play("enemy_warrior_move")
+	dudes = enemy.island.get_dudes()
 
 func Update(delta: float):
 	super.Update(delta)
 	
 	if enemy.position.distance_to(target_position) < 10.0:
 		Transitioned.emit(self, "EnemyWarriorPause")
+		
+	if len(dudes) > 0:
+		enemy.target = dudes.pick_random()
+		if not enemy.target.is_hostage:
+			Transitioned.emit(self, "EnemyWarriorHunt")
+
 
 func Physics_Update(delta: float):
 	super.Physics_Update(delta)

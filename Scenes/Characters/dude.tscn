@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dc0njor1mwxkd"]
+[gd_scene load_steps=32 format=3 uid="uid://dc0njor1mwxkd"]
 
 [ext_resource type="Texture2D" uid="uid://jsvgdp00ty3l" path="res://Sprites/Little Dude/LittleDude-Sheet.png" id="1_44xdr"]
 [ext_resource type="Script" path="res://Scripts/Dude/dude.gd" id="2_eoksl"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://Scripts/Dude/States/Warrior/dude_warrior_roam.gd" id="12_ae1nd"]
 [ext_resource type="Script" path="res://Scripts/Dude/States/Warrior/dude_warrior_pause.gd" id="13_77ryu"]
 [ext_resource type="Script" path="res://Scripts/Dude/States/Hostage/dude_hostage.gd" id="14_j2u6d"]
+[ext_resource type="Script" path="res://Scripts/Dude/States/Warrior/dude_warrior_hunt.gd" id="15_3p8du"]
+[ext_resource type="Script" path="res://Scripts/Dude/States/Warrior/dude_warrior_attack.gd" id="16_q86wl"]
 
 [sub_resource type="Animation" id="Animation_h0pky"]
 tracks/0/type = "value"
@@ -274,5 +276,15 @@ dude_animator = NodePath("../../AnimationPlayer")
 
 [node name="DudeHostage" type="Node" parent="StateMachine" node_paths=PackedStringArray("dude", "dude_animator")]
 script = ExtResource("14_j2u6d")
+dude = NodePath("../..")
+dude_animator = NodePath("../../AnimationPlayer")
+
+[node name="WarriorHunt" type="Node" parent="StateMachine" node_paths=PackedStringArray("dude", "dude_animator")]
+script = ExtResource("15_3p8du")
+dude = NodePath("../..")
+dude_animator = NodePath("../../AnimationPlayer")
+
+[node name="WarriorAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("dude", "dude_animator")]
+script = ExtResource("16_q86wl")
 dude = NodePath("../..")
 dude_animator = NodePath("../../AnimationPlayer")

@@ -16,6 +16,9 @@ const COLLIDE_THRESHOLD = 25
 const POP_PER_HOUSE = 4
 const DUDE_COST = 4
 const WARRIOR_COST = 4
+const BASE_DAMAGE = 1
+const BASE_HEALTH = 5
+const DUDE_MOVE_SPEED = 150
 
 var player = null
 
@@ -40,3 +43,27 @@ func add_food():
 func add_ore():
 	current_ore += 1
 	print("Ore: ", current_ore)
+
+
+
+func weighted_random_choice(weights):
+	var total_weight = 0
+	var choices = []
+
+	# Calculate total weight and prepare the choices array
+	for type in weights.keys():
+		total_weight += weights[type]
+		choices.append(type)
+
+	# Generate a random number within the range of the total weight
+	var random_num = randi() % total_weight
+	var weight_sum = 0
+
+	# Determine which type corresponds to the random number
+	for choice in choices:
+		weight_sum += weights[choice]
+		if random_num < weight_sum:
+			return choice
+
+	return choices[choices.size() - 1]  # Fallback, should not really happen
+
