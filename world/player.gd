@@ -22,6 +22,8 @@ var _mass = 1
 
 func _ready():
 	_get_collision_edge(true)
+	GameController.spawn_dude(self)
+	
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

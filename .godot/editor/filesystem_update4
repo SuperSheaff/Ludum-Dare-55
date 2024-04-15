@@ -12,3 +12,6 @@ res://world/player.tscn
 res://world/world.gd
 res://GameData.gd
 res://world/island.tscn
+res://Scripts/game_controller.gd
+res://Scripts/Dude/States/Idle/dude_idle_roam.gd
+res://Scripts/Dude/dude.gd

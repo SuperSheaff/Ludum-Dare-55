@@ -7,11 +7,12 @@ var current_food = 0
 var current_ore = 0
 
 func _ready():
-	spawn_dude()
-	spawn_dude()
-	spawn_dude()
-	spawn_dude()
-
+	#spawn_dude()
+	#spawn_dude()
+	#spawn_dude()
+	#spawn_dude()
+	pass
+	
 func check_for_task(dude_position):
 	var closest_task = null
 	var min_distance = INF  # Using a high initial distance to compare against
@@ -57,9 +58,11 @@ func check_for_task(dude_position):
 
 	return null
 	
-func spawn_dude():
+func spawn_dude(island):
 	var new_dude = dude_scene.instantiate()
+	new_dude.island = island
 	var house = find_nearest_house(new_dude.global_position)
+	print(house)
 	AudioManager.play("spawn", -9)
 	if house:
 		new_dude.house = house
@@ -83,7 +86,7 @@ func find_nearest_house(dude_position):
 func add_food():
 	current_food += 1
 	if current_food >= 4:
-		spawn_dude()
+		#spawn_dude()
 		current_food = 0
 	print("Food: ", current_food)
 	

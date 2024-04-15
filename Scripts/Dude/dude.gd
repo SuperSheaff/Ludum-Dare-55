@@ -3,6 +3,7 @@ class_name Dude
 
 var task = null
 var house : House
+var island = null
 
 func _physics_process(delta):
 	move_and_slide()
