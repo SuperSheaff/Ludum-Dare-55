@@ -46,7 +46,6 @@ func add_island(position):
 	add_child(isle)
 	_active_islands.append(isle)
 	
-	
 
 func remove_island(island):
 	_active_islands.erase(island)

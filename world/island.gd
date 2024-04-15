@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var tilemap = get_node("TileMap")
 @onready var area_2d = get_node("Area2D")
 const dude_scene = preload("res://Scenes/Characters/dude.tscn")
+const enemy_scene = preload("res://Scenes/Characters/enemy.tscn")
 const house_scene = preload("res://Scenes/Buildings/house.tscn")
 const food_scene = preload("res://Scenes/Resources/food.tscn")
 const ore_scene = preload("res://Scenes/Resources/ore.tscn")
@@ -25,7 +26,6 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
-	
 
 func spawn_dude(is_hostage):
 	if is_hostage:
@@ -47,9 +47,10 @@ func spawn_dude(is_hostage):
 			new_dude.house = house
 			add_child(new_dude)
 	
-	
-
-	# change hostage state
+func spawn_enemy():
+	var new_enemy = enemy_scene.instantiate()
+	new_enemy.island = self
+	add_child(new_enemy)
 
 func get_dudes():
 	var dudes = []
@@ -57,6 +58,13 @@ func get_dudes():
 		if child is Dude:
 			dudes.append(child)
 	return dudes
+	
+func get_enemies():
+	var enemies = []
+	for child in get_children():
+		if child is Enemy:
+			enemies.append(child)
+	return enemies
 	
 func get_population():
 	return len(get_dudes())
@@ -133,14 +141,8 @@ func _generate_island():
 	#barracks.position = tilemap.map_to_local(barracks.coords)
 	add_child(barracks)
 	
-	
+	spawn_enemy()
 	spawn_dude(true)
-	
-	# spawn food 
-	
-	
-	
-
 
 # Add a CollisionShape2D corresponding to the given cell
 func _add_collider(cell):

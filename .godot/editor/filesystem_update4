@@ -3,11 +3,11 @@ res://Tilemaps/island_tileset.tres
 res://Scenes/Characters/dude.tscn
 res://Scenes/Resources/ore.tscn
 res://Scenes/Buildings/barracks.tscn
+res://Scenes/Buildings/house.tscn
 res://Scenes/Buildings/monolith.tscn
 res://world/world.tscn
 res://world/player.tscn
 res://world/island.tscn
 res://Scenes/Emitters/food_particle.tscn
 res://Scenes/Emitters/ore_particle.tscn
-res://Scenes/Buildings/house.tscn
-res://world/island.gd
+res://Scenes/Characters/enemy.tscn
