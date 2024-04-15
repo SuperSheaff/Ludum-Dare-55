@@ -3,7 +3,7 @@ class_name DudeHostage
 
 func Enter():
 	super.Enter()
-	dude_animator.play("enemy_idle")
+	dude_animator.play("warrior_move")
 	
 func Update(delta: float):
 	super.Update(delta)

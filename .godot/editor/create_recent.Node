@@ -1,3 +1,5 @@
+DudeHostage
+Node
 CharacterBody2D
 RigidBody2D
 TileMap
@@ -11,4 +13,3 @@ DudeOreCollect
 DudeOreMoveToOre
 Camera2D
 DudeIdle
-CollisionShape2D

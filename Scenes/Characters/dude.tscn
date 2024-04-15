@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://dc0njor1mwxkd"]
+[gd_scene load_steps=28 format=3 uid="uid://dc0njor1mwxkd"]
 
 [ext_resource type="Texture2D" uid="uid://jsvgdp00ty3l" path="res://Sprites/Little Dude/LittleDude-Sheet.png" id="1_44xdr"]
 [ext_resource type="Script" path="res://Scripts/Dude/dude.gd" id="2_eoksl"]
@@ -13,7 +13,7 @@
 [ext_resource type="Script" path="res://Scripts/Dude/States/Collect Ore/dude_ore_bring_ore_home.gd" id="11_egp6q"]
 [ext_resource type="Script" path="res://Scripts/Dude/States/Warrior/dude_warrior_roam.gd" id="12_ae1nd"]
 [ext_resource type="Script" path="res://Scripts/Dude/States/Warrior/dude_warrior_pause.gd" id="13_77ryu"]
-[ext_resource type="Script" path="res://Scripts/Dude/States/Hostage/dude_hostage.gd" id="14_3xqso"]
+[ext_resource type="Script" path="res://Scripts/Dude/States/Hostage/dude_hostage.gd" id="14_j2u6d"]
 
 [sub_resource type="Animation" id="Animation_h0pky"]
 tracks/0/type = "value"
@@ -131,49 +131,13 @@ tracks/0/keys = {
 "values": [32, 33, 34, 35, 36, 37, 38, 39]
 }
 
-[sub_resource type="Animation" id="Animation_vdfx3"]
-resource_name = "warrior_attack"
-length = 0.7
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [40, 41, 42, 43, 44, 45]
-}
-
-[sub_resource type="Animation" id="Animation_vryjq"]
-resource_name = "enemy_idle"
-length = 0.8
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [47, 48, 49, 50]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vlvy0"]
 _data = {
 "RESET": SubResource("Animation_h0pky"),
-"enemy_idle": SubResource("Animation_vryjq"),
 "idle": SubResource("Animation_yo22e"),
 "move": SubResource("Animation_h6lrw"),
 "move_food": SubResource("Animation_gipdy"),
 "move_ore": SubResource("Animation_7ip07"),
-"warrior_attack": SubResource("Animation_vdfx3"),
 "warrior_idle": SubResource("Animation_0nde8"),
 "warrior_move": SubResource("Animation_rk5jh")
 }
@@ -272,7 +236,5 @@ script = ExtResource("13_77ryu")
 dude = NodePath("../..")
 dude_animator = NodePath("../../AnimationPlayer")
 
-[node name="Hostage" type="Node" parent="StateMachine" node_paths=PackedStringArray("dude", "dude_animator")]
-script = ExtResource("14_3xqso")
-dude = NodePath("../..")
-dude_animator = NodePath("../../AnimationPlayer")
+[node name="DudeHostage" type="Node" parent="StateMachine"]
+script = ExtResource("14_j2u6d")

@@ -33,7 +33,7 @@ func add_food():
 	current_food += 1
 	if current_food >= DUDE_COST:
 		if player.get_population() < player.get_population_limit():
-			player.spawn_dude(1)
+			player.spawn_dude(false)
 			current_food -= DUDE_COST
 	print("Food: ", current_food)
 	

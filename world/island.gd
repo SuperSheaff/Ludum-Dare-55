@@ -3,6 +3,9 @@ extends CharacterBody2D
 @onready var tilemap = get_node("TileMap")
 @onready var area_2d = get_node("Area2D")
 const dude_scene = preload("res://Scenes/Characters/dude.tscn")
+const house_scene = preload("res://Scenes/Buildings/house.tscn")
+const food_scene = preload("res://Scenes/Resources/food.tscn")
+const barracks_scene = preload("res://Scripts/barracks.gd")
 
 #var velocity = Vector2.ZERO
 var _direction = Vector2.ZERO
@@ -23,17 +26,17 @@ func _process(delta):
 	pass
 	
 
-func spawn_dude(initial_state):
-	if initial_state:
-		var new_dude = dude_scene.instantiate()
-		new_dude.island = self
-		var house = new_dude.find_nearest_house()
-		AudioManager.play("spawn", -9)
-		if house:
-			new_dude.house = house
-			add_child(new_dude)
-	else:
-		pass
+func spawn_dude(is_hostage):
+	var new_dude = dude_scene.instantiate()
+	new_dude.island = self
+	var house = new_dude.find_nearest_house()
+	AudioManager.play("spawn", -9)
+	if house:
+		new_dude.house = house
+		add_child(new_dude)
+	
+	if is_hostage:
+		new_dude.get_node("StateMachine").on_child_transition(DudeState, "DudeHostage")
 
 	# change hostage state
 
@@ -99,8 +102,15 @@ func _generate_island():
 	_get_collision_shape()
 	_get_collision_edge(false)
 	
-	# spawn hosues
+	var house = house_scene.instantiate()
+	house.position = tilemap.map_to_local(Vector2(-1,-1))
+	add_child(house)
 	
+	var farm = food_scene.instantiate()
+	farm.position = tilemap.map_to_local(Vector2(-2, 1))
+	add_child(farm)
+	
+	spawn_dude(true)
 	
 	# spawn food 
 	

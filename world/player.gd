@@ -24,8 +24,8 @@ func _ready():
 	GameData.player = self
 	_get_collision_shape()
 	_get_collision_edge(true)
-	spawn_dude(1)
-	spawn_dude(1)
+	spawn_dude(false)
+	spawn_dude(false)
 	
 
 
@@ -57,7 +57,7 @@ func _get_aim_direction():
 func _island_collision(local_cs, other_cs, delta):
 	camera.camera_shake()
 	AudioManager.play("collide", -8, 0.7)
-	#_collision_physics(other_cs.get_parent().get_parent(), delta)
+	_collision_physics(other_cs.get_parent().get_parent(), delta)
 	_merge_island(local_cs, other_cs)
 	camera.update_camera_zoom_pos()
 	collisions.clear()
