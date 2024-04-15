@@ -1,10 +1,10 @@
-extends Node2D
+extends CharacterBody2D
 
 @onready var tilemap = get_node("TileMap")
 @onready var area_2d = get_node("Area2D")
 
 
-var velocity = Vector2.ZERO
+#var velocity = Vector2.ZERO
 var _direction = Vector2.ZERO
 var _is_moving = false
 
@@ -27,8 +27,9 @@ func _physics_process(delta):
 		velocity = velocity.lerp(_direction * GameData.MAX_SPEED, GameData.ACCELERATION)
 	else:
 		velocity = velocity.lerp(Vector2.ZERO, GameData.FRICTION)
-
-	position += velocity * delta
+	#print(position)
+	move_and_slide()
+	#position += velocity * delta
 	
 
 func get_mass():
@@ -58,6 +59,29 @@ func _add_collider(cell):
 	shape.points = vertices
 	collision_shape.shape = shape
 	collision_shape.position = center
+	call_deferred("add_child", collision_shape)
+	
+	collision_shape = CollisionShape2D.new()
+	collision_shape.shape = shape
+	collision_shape.position = center
+	
+	area_2d.call_deferred("add_child", collision_shape)
+	
+	
+# Add a CollisionShape2D corresponding to the given cell
+func _add_collider_edge(cell):
+	var collision_shape = CollisionShape2D.new() 
+	var center = tilemap.map_to_local(cell)
+	var vertices = [
+		Vector2(-GameData.TILE_WIDTH/2, 0),
+		Vector2(0, GameData.TILE_HEIGHT/2),
+		Vector2(GameData.TILE_WIDTH/2, 0),
+		Vector2(0, -GameData.TILE_HEIGHT/2)
+	]
+	var shape = ConvexPolygonShape2D.new()
+	shape.points = vertices
+	collision_shape.shape = shape
+	collision_shape.position = center
 	area_2d.call_deferred("add_child", collision_shape)
 	_edge_shapes[cell] = collision_shape
 
@@ -69,7 +93,7 @@ func _get_collision_shape():
 		
 
 # Get the collisionshapes for the edge cells (no corners)
-func _get_collision_edge(with_collider):
+func _get_collision_edge(with_collider=false):
 	var corners = [Vector2i(1,1), Vector2i(1,-1), Vector2i(-1,1), Vector2i(-1,-1)]
 	for cell in tilemap.get_used_cells(0):
 		var neighbours = tilemap.get_surrounding_cells(cell)
@@ -78,7 +102,7 @@ func _get_collision_edge(with_collider):
 				if not edges.has(neighbour):
 					edges[neighbour] = neighbour
 					if with_collider:
-						_add_collider(neighbour)
+						_add_collider_edge(neighbour)
 
 
 

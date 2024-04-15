@@ -7,7 +7,7 @@ var MAX_SPEED : float = 500
 var ACCELERATION : float = 0.5
 var FRICTION : float = 0.1
 
-const COLLIDE_THRESHOLD = 50
+const COLLIDE_THRESHOLD = 25
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

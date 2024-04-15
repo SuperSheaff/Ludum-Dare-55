@@ -8,12 +8,12 @@
 [node name="Player" instance=ExtResource("1_nkg0s")]
 script = ExtResource("2_65w22")
 
-[node name="Camera2D" type="Camera2D" parent="." index="2"]
+[node name="House" parent="." index="2" groups=["Houses"] instance=ExtResource("4_q7pwu")]
+position = Vector2(1, -71)
+
+[node name="Camera2D" type="Camera2D" parent="." index="3"]
 position_smoothing_enabled = true
 script = ExtResource("3_xgala")
-
-[node name="House" parent="." index="3" groups=["Houses"] instance=ExtResource("4_q7pwu")]
-position = Vector2(1, -71)
 
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
 [connection signal="area_shape_exited" from="Area2D" to="." method="_on_area_2d_area_shape_exited"]

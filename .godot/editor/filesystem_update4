@@ -15,3 +15,5 @@ res://world/island.tscn
 res://Scripts/game_controller.gd
 res://Scripts/Dude/States/Idle/dude_idle_roam.gd
 res://Scripts/Dude/dude.gd
+res://world/Camera2D.gd
+res://world/island.gd

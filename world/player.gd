@@ -21,6 +21,7 @@ var _mass = 1
 
 
 func _ready():
+	_get_collision_shape()
 	_get_collision_edge(true)
 	GameController.spawn_dude(self)
 	
@@ -28,7 +29,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	
+	#print(position)
 	_get_aim_direction()		
 	
 	_check_collisions(delta)
@@ -53,7 +54,7 @@ func _get_aim_direction():
 
 func _island_collision(local_cs, other_cs, delta):
 	camera.camera_shake()
-	_collision_physics(other_cs.get_parent().get_parent(), delta)
+	#_collision_physics(other_cs.get_parent().get_parent(), delta)
 	_merge_island(local_cs, other_cs)
 	camera.update_camera_zoom_pos()
 	collisions.clear()
@@ -87,12 +88,13 @@ func _merge_island(local_cs, other_cs):
 		if tilemap.get_cell_source_id(0, new) == -1:
 			if not edges.has(new):
 				edges[new] = new
-				_add_collider(new)
+				_add_collider_edge(new)
 
 	# Add main tiles from new island and delete invalid edges
 	for cell in other_island.tilemap.get_used_cells(0):
 		var new = local_point_tm + cell - other_point_tm
 		tilemap.set_cell(0, new, 2, Vector2i(0, 0))
+		_add_collider(new)
 		if edges.has(new):
 			edges.erase(new)
 			_edge_shapes[new].queue_free()
