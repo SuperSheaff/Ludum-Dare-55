@@ -11,9 +11,15 @@ res://world/island.tscn
 res://Scenes/Emitters/food_particle.tscn
 res://Scenes/Emitters/ore_particle.tscn
 res://Scenes/Characters/enemy.tscn
+<<<<<<< Updated upstream
 res://world/world.gd
 res://world/Camera2D.gd
 res://world/island.gd
 res://world/player.gd
 res://GameData.gd
 res://Scripts/Dude/dude.gd
+=======
+res://world/Camera2D.gd
+res://world/island.gd
+res://Scripts/Dude/States/Hostage/dude_hostage.gd
+>>>>>>> Stashed changes

@@ -1,10 +1,14 @@
 extends DudeState
 class_name DudeHostage
 
+var pause_time : float
+
 func Enter():
 	super.Enter()
-	dude_animator.play("enemy_idle")
+	
 	dude.is_hostage = true
+	randomize_pause()
+	dude_animator.play("enemy_idle")
 	
 func Exit():
 	super.Exit()
@@ -25,4 +29,8 @@ func has_parent_named(node, name):
 			return true
 		node = node.get_parent()
 	return false
+	
+func randomize_pause():
+	move_direction = Vector2(randf_range(-1, 1), randf_range(-1, 1)).normalized()
+	pause_time = randf_range(0, 1)
 	

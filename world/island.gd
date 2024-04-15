@@ -226,22 +226,39 @@ func generate_island():
 	var num_tiles = len(tilemap.get_used_cells(0))
 	available_cells = tilemap.get_used_cells(0).duplicate()
 	
-	if num_tiles < 3:
+	# FIRST SET
+	if num_tiles < 2:
 		var weights = {
-			"ore": 40,
-			"food": 30,
-			"barracks": 10,
-			"house": 30,
-			"null": 20
+			"food": 75,
+			"null": 25
 		}
+		
 		var selected = GameData.weighted_random_choice(weights)
 		add_object(selected)
+		
+	# SECOND SET
+	elif num_tiles < 5:
+		var weights = {
+			"ore": 75,
+			"null": 25
+		}
+		var num_weights = {
+			1: 70,
+			2: 30,
+		}
+		var num_objs = GameData.weighted_random_choice(num_weights)
+		for i in range(num_objs):
+			var selected = GameData.weighted_random_choice(weights)
+			add_object(selected)
+		
+	# THIRD SET
 	elif num_tiles < 9:
 		var weights = {
 			"ore": 40,
 			"food": 30,
-			"barracks": 10,
+			"barracks": 20,
 			"house": 30,
+			"enemy": 20,
 			"null": 20
 		}
 		var num_weights = {
@@ -276,6 +293,8 @@ func add_object(object_type):
 			obj = barracks_scene.instantiate()
 		"house":
 			obj = house_scene.instantiate()
+		"enemy":
+			obj = enemy_scene.instantiate()
 			
 		
 	obj.coords = pos

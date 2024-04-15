@@ -40,7 +40,7 @@ func update_camera_zoom_pos(pad=0.5):
 	var new_zoom = Vector2(zoom_min, zoom_min) * pad  # 0.95 for slight padding
 
 	var tween = get_tree().create_tween()
-	tween.parallel().tween_property(self, "zoom", new_zoom, 0.3).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
+	#tween.parallel().tween_property(self, "zoom", new_zoom, 0.3).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
 	tween.parallel().tween_property(self, "position", tilemap_box.position+tilemap_box.size/2, 0.4).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_SINE)
 	
 func get_bounding_box(tilemap):

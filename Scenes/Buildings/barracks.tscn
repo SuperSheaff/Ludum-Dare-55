@@ -1,14 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://cgi0s30chscjh"]
 
 [ext_resource type="Script" path="res://Scripts/barracks.gd" id="1_vrhhb"]
-[ext_resource type="Texture2D" uid="uid://coh4b01foym1s" path="res://Sprites/Environment/Home-Sheet.png" id="2_doh7e"]
+[ext_resource type="Texture2D" uid="uid://c7byds2pkhq5i" path="res://Sprites/Environment/Barracks-Sheet.png" id="2_0qg4i"]
 
 [node name="Barracks" type="Node2D"]
 z_index = 1
 script = ExtResource("1_vrhhb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_doh7e")
+texture = ExtResource("2_0qg4i")
 offset = Vector2(0, -45)
-hframes = 3
-vframes = 3
