@@ -21,8 +21,8 @@ func Update(delta: float):
 		Transitioned.emit(self, "BringOreHome")
 		#ore emit
 		var new_ore_emitter = ore_emitter.instantiate()
-		new_ore_emitter.global_position = dude.global_position
-		add_child(new_ore_emitter)
+		new_ore_emitter.position = dude.position
+		dude.island.add_child(new_ore_emitter)
 		AudioManager.play("ore", -10)
 
 func Physics_Update(delta: float):

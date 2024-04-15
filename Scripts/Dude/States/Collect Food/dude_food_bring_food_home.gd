@@ -15,16 +15,16 @@ func Physics_Update(delta: float):
 	super.Physics_Update(delta)
 
 	if house_position:
-		var direction = (house_position - dude.global_position).normalized()
+		var direction = (house_position - dude.position).normalized()
 		dude.velocity = direction * move_speed
 	else:
 		dude.velocity = Vector2.ZERO
 
 func move_towards_house(delta):
 	if house_position:
-		var distance = dude.global_position.distance_to(house_position)
+		var distance = dude.position.distance_to(house_position)
 		if distance <= house_distance:
-			GameController.add_food()
+			GameData.add_food()
 			AudioManager.play("deposit", -14)
 			Transitioned.emit(self, "MoveToFood")
 	else:

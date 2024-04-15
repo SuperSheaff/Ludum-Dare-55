@@ -7,13 +7,19 @@ res://Scenes/Resources/ore.tscn
 res://Scenes/Buildings/barracks.tscn
 res://Scenes/Buildings/monolith.tscn
 res://world/world.tscn
-res://world/player.gd
 res://world/player.tscn
-res://world/world.gd
-res://GameData.gd
 res://world/island.tscn
-res://Scripts/game_controller.gd
-res://Scripts/Dude/States/Idle/dude_idle_roam.gd
 res://Scripts/Dude/dude.gd
-res://world/Camera2D.gd
+res://GameData.gd
+res://Scripts/game_controller.gd
 res://world/island.gd
+res://world/player.gd
+res://Scripts/Dude/States/Collect Food/dude_food_bring_food_home.gd
+res://Scripts/Dude/States/Collect Ore/dude_ore_bring_ore_home.gd
+res://Scripts/Dude/States/Warrior/dude_warrior_roam.gd
+res://Scripts/Dude/States/Collect Food/dude_food_collect.gd
+res://Scripts/Dude/States/Collect Food/dude_food_move_to_food.gd
+res://Scripts/Dude/States/Collect Ore/dude_ore_move_to_ore.gd
+res://Scripts/Dude/States/Collect Ore/dude_ore_collect.gd
+res://Scenes/Emitters/food_particle.tscn
+res://Scenes/Emitters/ore_particle.tscn

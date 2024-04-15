@@ -15,14 +15,14 @@ func Physics_Update(delta: float):
 	super.Physics_Update(delta)
 	
 	if ore:
-		var direction = (ore.global_position - dude.global_position).normalized()
+		var direction = (ore.position - dude.position).normalized()
 		dude.velocity = direction * move_speed
 	else:
 		dude.velocity = Vector2.ZERO
 
 func move_towards_ore(delta):
 	if ore:
-		var distance = dude.global_position.distance_to(ore.global_position)
+		var distance = dude.position.distance_to(ore.position)
 		if distance <= collect_distance:
 			Transitioned.emit(self, "CollectOre")
 	else:

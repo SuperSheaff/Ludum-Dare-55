@@ -70,18 +70,7 @@ func spawn_dude(island):
 		
 		print("Dude spawned and assigned to house at position: ", house.global_position)
 
-func find_nearest_house(dude_position):
-	var houses = get_tree().get_nodes_in_group("Houses")
-	var nearest_house = null
-	var min_distance = INF
 
-	for house in houses:
-		var distance = dude_position.distance_to(house.global_position)
-		if distance < min_distance:
-			min_distance = distance
-			nearest_house = house
-
-	return nearest_house
 	
 func add_food():
 	current_food += 1

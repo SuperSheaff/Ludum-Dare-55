@@ -21,9 +21,11 @@ var _mass = 1
 
 
 func _ready():
+	GameData.player = self
 	_get_collision_shape()
 	_get_collision_edge(true)
-	GameController.spawn_dude(self)
+	spawn_dude(1)
+	spawn_dude(1)
 	
 
 

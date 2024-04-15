@@ -4,8 +4,9 @@
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y7scv"]
 texture = ExtResource("1_0h4ci")
-texture_region_size = Vector2i(160, 80)
+texture_region_size = Vector2i(160, 160)
 0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -40)
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
 0:1/0 = 0
