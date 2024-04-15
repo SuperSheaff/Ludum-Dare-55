@@ -27,7 +27,7 @@ func _process(delta):
 
 func spawn_islands():
 	var player_pos = player.global_position
-	var angle = randf_range(0, 2 * PI)  # Random angle in radians
+	var angle = randf_range(0, 2 * PI)  # Random angleg in radians
 	var distance = randf_range(MIN_SPAWN_DIST, MAX_SPAWN_DIST)  # Random spawn distance
 	var spawn_pos = player_pos + Vector2(cos(angle), sin(angle)) * distance
 	if not island_exists_at(spawn_pos):

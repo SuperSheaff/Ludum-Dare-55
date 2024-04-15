@@ -184,7 +184,7 @@ anim_player = NodePath("../AnimationPlayer")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("3_t0qli")
-initial_state = NodePath("Hostage")
+initial_state = NodePath("DudeHostage")
 
 [node name="IdlePause" type="Node" parent="StateMachine" node_paths=PackedStringArray("dude", "dude_animator")]
 script = ExtResource("4_s1u3n")
@@ -236,7 +236,5 @@ script = ExtResource("13_77ryu")
 dude = NodePath("../..")
 dude_animator = NodePath("../../AnimationPlayer")
 
-[node name="Hostage" type="Node" parent="StateMachine" node_paths=PackedStringArray("dude", "dude_animator")]
+[node name="DudeHostage" type="Node" parent="StateMachine"]
 script = ExtResource("14_j2u6d")
-dude = NodePath("../..")
-dude_animator = NodePath("../../AnimationPlayer")

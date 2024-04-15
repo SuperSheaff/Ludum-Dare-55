@@ -34,6 +34,11 @@ func spawn_dude(is_hostage):
 		new_dude.island = self
 		add_child(new_dude)
 		new_dude.get_node("StateMachine").change_state("Hostage")
+		var house = new_dude.find_nearest_house()
+		AudioManager.play("spawn", -9)
+		if house:
+			new_dude.house = house
+			add_child(new_dude)
 		
 	else:
 		var new_dude = dude_scene.instantiate()

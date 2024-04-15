@@ -1,6 +1,6 @@
 res://Scenes/Resources/food.tscn
 res://Tilemaps/island_tileset.tres
-res://Scenes/Resources/food.tscn
+res://Scenes/Characters/dude.tscn
 res://Scenes/Resources/ore.tscn
 res://Scenes/Buildings/barracks.tscn
 res://Scenes/Buildings/monolith.tscn
@@ -9,6 +9,15 @@ res://world/player.tscn
 res://world/island.tscn
 res://Scenes/Emitters/food_particle.tscn
 res://Scenes/Emitters/ore_particle.tscn
-res://Scripts/Dude/dude_state_machine.gd
 res://world/island.gd
+res://world/player.gd
+res://GameData.gd
 res://Scripts/Dude/States/Hostage/dude_hostage.gd
+res://Scripts/Dude/States/Idle/dude_idle_roam.gd
+res://Scripts/food.gd
+res://Scripts/ore.gd
+res://Scripts/barracks.gd
+res://Scripts/monolith.gd
+res://Scripts/house.gd
+res://Scenes/Buildings/house.tscn
+res://world/world.gd
