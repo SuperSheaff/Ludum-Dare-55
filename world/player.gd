@@ -54,6 +54,7 @@ func _get_aim_direction():
 
 func _island_collision(local_cs, other_cs, delta):
 	camera.camera_shake()
+	AudioManager.play("collide", -8, 0.7)
 	#_collision_physics(other_cs.get_parent().get_parent(), delta)
 	_merge_island(local_cs, other_cs)
 	camera.update_camera_zoom_pos()

@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://0uexbmokxjg6"]
+[gd_scene load_steps=7 format=3 uid="uid://0uexbmokxjg6"]
 
 [ext_resource type="PackedScene" uid="uid://cke738yixhthx" path="res://world/island.tscn" id="1_nkg0s"]
 [ext_resource type="Script" path="res://world/player.gd" id="2_65w22"]
 [ext_resource type="Script" path="res://world/Camera2D.gd" id="3_xgala"]
 [ext_resource type="PackedScene" uid="uid://ccorg5bj766v5" path="res://Scenes/Buildings/house.tscn" id="4_q7pwu"]
+[ext_resource type="Texture2D" uid="uid://ckniockffreh" path="res://Sprites/Environment/cloud_1.png" id="5_6kmwv"]
+[ext_resource type="Texture2D" uid="uid://hgttcdguyytc" path="res://Sprites/Environment/paralax_maybe.png" id="6_4n7y5"]
 
 [node name="Player" instance=ExtResource("1_nkg0s")]
 script = ExtResource("2_65w22")
@@ -12,8 +14,44 @@ script = ExtResource("2_65w22")
 position = Vector2(1, -71)
 
 [node name="Camera2D" type="Camera2D" parent="." index="3"]
+zoom = Vector2(0.4, 0.4)
 position_smoothing_enabled = true
 script = ExtResource("3_xgala")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D" index="0"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground" index="0"]
+motion_scale = Vector2(0, 0)
+
+[node name="ColorRect" type="ColorRect" parent="Camera2D/ParallaxBackground/ParallaxLayer" index="0"]
+offset_left = -6171.0
+offset_top = -4045.0
+offset_right = 7748.0
+offset_bottom = 4382.0
+color = Color(0.384314, 0.741176, 0.8, 1)
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Camera2D/ParallaxBackground" index="1"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Camera2D/ParallaxBackground/ParallaxLayer2" index="0"]
+visible = false
+position = Vector2(-1696, 0)
+amount = 24
+lifetime = 500.0
+randomness = 1.0
+texture = ExtResource("5_6kmwv")
+emission_shape = 3
+emission_rect_extents = Vector2(1, 500)
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+
+[node name="TextureRect" type="TextureRect" parent="Camera2D/ParallaxBackground/ParallaxLayer2" index="1"]
+offset_left = -5617.0
+offset_top = -3479.0
+offset_right = 7202.0
+offset_bottom = 3981.0
+texture = ExtResource("6_4n7y5")
 
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
 [connection signal="area_shape_exited" from="Area2D" to="." method="_on_area_2d_area_shape_exited"]

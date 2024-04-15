@@ -6,6 +6,7 @@ var audio_files = \
 	"ore" : ["res://Audio/ore.wav", "SFX", 0],
 	"deposit" : ["res://Audio/deposit.wav", "SFX", 0],
 	"spawn" : ["res://Audio/spawn.wav", "SFX", 0],
+	"collide" : ["res://Audio/collide.wav", "SFX", 0],
 	#Music
 	"ambient" : ["res://Audio/awful_music.ogg", "MUSIC", 1]
 
