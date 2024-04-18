@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://dk8utn46voyc"]
+
+[ext_resource type="Script" path="res://agents/agent.gd" id="1_4tjfd"]
+[ext_resource type="Script" path="res://agents/res/agent_data.gd" id="2_7tckp"]
+[ext_resource type="Script" path="res://game/state_machine.gd" id="2_8g6sn"]
+[ext_resource type="Texture2D" uid="uid://doxse7xm0rtve" path="res://assets/LittleDude-Sheet.png" id="3_owjr2"]
+
+[sub_resource type="Resource" id="Resource_kwlnj"]
+script = ExtResource("2_7tckp")
+max_speed = 200
+acceleration = 0.5
+friction = 0.2
+
+[node name="Agent" type="Node2D"]
+script = ExtResource("1_4tjfd")
+data = SubResource("Resource_kwlnj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_owjr2")
+offset = Vector2(2.08165e-12, -40)
+hframes = 9
+vframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_8g6sn")

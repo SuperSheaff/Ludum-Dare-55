@@ -1,0 +1,94 @@
+[gd_scene load_steps=11 format=3 uid="uid://bra788mn5cyov"]
+
+[ext_resource type="PackedScene" uid="uid://dk8utn46voyc" path="res://agents/agent.tscn" id="1_ljysp"]
+[ext_resource type="Script" path="res://agents/states/state_idle.gd" id="2_6eydb"]
+[ext_resource type="Script" path="res://agents/worker.gd" id="2_cjrhc"]
+[ext_resource type="Script" path="res://agents/res/worker_data.gd" id="3_f7n7w"]
+[ext_resource type="Script" path="res://agents/states/state_roam.gd" id="3_kic7l"]
+
+[sub_resource type="Resource" id="Resource_nb02d"]
+script = ExtResource("3_f7n7w")
+health = 100
+max_speed = 200
+acceleration = 0.5
+friction = 0.2
+
+[sub_resource type="Animation" id="Animation_d1b1m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_hyfg6"]
+resource_name = "idle"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_fqvxq"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [4, 5, 6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mluqm"]
+_data = {
+"RESET": SubResource("Animation_d1b1m"),
+"idle": SubResource("Animation_hyfg6"),
+"walk": SubResource("Animation_fqvxq")
+}
+
+[node name="Worker" instance=ExtResource("1_ljysp")]
+script = ExtResource("2_cjrhc")
+data = SubResource("Resource_nb02d")
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+"": SubResource("AnimationLibrary_mluqm")
+}
+
+[node name="StateMachine" parent="." index="2" node_paths=PackedStringArray("_entity", "_initial_state")]
+_entity = NodePath("..")
+_initial_state = NodePath("StateIdle")
+
+[node name="StateIdle" type="Node" parent="StateMachine" index="0"]
+script = ExtResource("2_6eydb")
+
+[node name="Timer" type="Timer" parent="StateMachine/StateIdle" index="0"]
+one_shot = true
+
+[node name="StateRoam" type="Node" parent="StateMachine" index="1"]
+script = ExtResource("3_kic7l")
+
+[connection signal="timeout" from="StateMachine/StateIdle/Timer" to="StateMachine/StateIdle" method="_on_timer_timeout"]

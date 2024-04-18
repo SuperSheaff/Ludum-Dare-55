@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dayjjikq7ldpj"]
+
+[ext_resource type="PackedScene" uid="uid://yhyg5shjj7pi" path="res://world/island.tscn" id="1_ymvhd"]
+[ext_resource type="Script" path="res://world/player.gd" id="2_0trx5"]
+
+[node name="Player" instance=ExtResource("1_ymvhd")]
+script = ExtResource("2_0trx5")
+
+[node name="TileMap" parent="." index="0"]
+layer_0/tile_data = PackedInt32Array(65535, 1, 0, -65535, 1, 0, 1, 1, 0, 65537, 1, 0, 65536, 1, 0, 131071, 1, 0, 2, 1, 0, 131072, 1, 0, -65536, 1, 0, 0, 1, 131072, -1, 1, 0)
+
+[node name="Camera2D" type="Camera2D" parent="." index="3"]
+
+[node name="Worker2" parent="." index="4"]
+position = Vector2(226, 50)

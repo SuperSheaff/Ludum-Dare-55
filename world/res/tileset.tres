@@ -1,0 +1,33 @@
+[gd_resource type="TileSet" load_steps=6 format=3 uid="uid://by64qqcad7k2k"]
+
+[ext_resource type="PackedScene" uid="uid://b81uksqjsgyae" path="res://world/building.tscn" id="1_6oyfq"]
+[ext_resource type="Texture2D" uid="uid://4jml40awl0od" path="res://assets/TileSet.png" id="2_fgwoe"]
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_1enp3"]
+scenes/1/scene = ExtResource("1_6oyfq")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_5i50e"]
+vertices = PackedVector2Array(80, 0, 0, 40, -80, 0, 0, -40)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(0, -40, -80, 0, 0, 40, 80, 0)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vnxih"]
+resource_name = "ground"
+texture = ExtResource("2_fgwoe")
+texture_region_size = Vector2i(160, 160)
+0:0/next_alternative_id = 4
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -40)
+0:0/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_5i50e")
+0:0/2 = 2
+0:0/2/texture_origin = Vector2i(0, -40)
+
+[resource]
+tile_shape = 1
+tile_layout = 5
+tile_size = Vector2i(160, 80)
+navigation_layer_0/layers = 1
+sources/1 = SubResource("TileSetAtlasSource_vnxih")
+sources/0 = SubResource("TileSetScenesCollectionSource_1enp3")

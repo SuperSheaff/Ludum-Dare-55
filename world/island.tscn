@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://yhyg5shjj7pi"]
+
+[ext_resource type="Script" path="res://world/island.gd" id="1_84pl3"]
+[ext_resource type="TileSet" uid="uid://by64qqcad7k2k" path="res://world/res/tileset.tres" id="2_dceoc"]
+[ext_resource type="PackedScene" uid="uid://bra788mn5cyov" path="res://agents/worker.tscn" id="3_fkbsk"]
+
+[node name="Island" type="CharacterBody2D"]
+y_sort_enabled = true
+motion_mode = 1
+script = ExtResource("1_84pl3")
+
+[node name="TileMap" type="TileMap" parent="." groups=["tilemap"]]
+y_sort_enabled = true
+tile_set = ExtResource("2_dceoc")
+format = 2
+layer_0/name = "ground"
+layer_0/y_sort_enabled = true
+layer_0/z_index = -1
+layer_0/navigation_enabled = false
+layer_0/tile_data = PackedInt32Array(65535, 1, 0, -65535, 1, 0, 1, 1, 0, 65537, 1, 0, 65536, 1, 0, 131071, 1, 0, -131072, 1, 0, 2, 1, 0, 131072, 1, 0, 65534, 1, 0, 196608, 1, 0, 262144, 1, 0, 262145, 1, 0, 327681, 1, 0, 393217, 1, 0, 458753, 1, 0, 393216, 1, 0, 327680, 1, 0, -65536, 1, 0, 0, 1, 131072, -3, 1, 0, 65533, 1, 0, -196608, 1, 0, -65539, 1, 0, -131075, 1, 0, -196611, 1, 0, -196610, 1, 0, -196609, 1, 0, -262144, 1, 0, -1, 1, 0, -2, 1, 0)
+layer_1/name = "objects"
+layer_1/y_sort_enabled = true
+layer_1/navigation_enabled = false
+layer_1/tile_data = PackedInt32Array(0, 0, 65536)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+z_index = 1
+
+[node name="Worker" parent="." node_paths=PackedStringArray("world") instance=ExtResource("3_fkbsk")]
+position = Vector2(-41, 76)
+world = NodePath("..")
+
+[node name="Worker2" parent="." node_paths=PackedStringArray("world") instance=ExtResource("3_fkbsk")]
+position = Vector2(-49, -66)
+world = NodePath("..")

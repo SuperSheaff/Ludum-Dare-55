@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://b81uksqjsgyae"]
+
+[ext_resource type="Script" path="res://world/building.gd" id="1_eq80g"]
+[ext_resource type="Texture2D" uid="uid://brbbr872dpm4y" path="res://assets/Home-Sheet.png" id="1_ttjla"]
+[ext_resource type="Script" path="res://world/res/building_data.gd" id="2_ut4g3"]
+
+[sub_resource type="Resource" id="Resource_yaclo"]
+script = ExtResource("2_ut4g3")
+
+[node name="Building" type="Node2D"]
+script = ExtResource("1_eq80g")
+data = SubResource("Resource_yaclo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ttjla")
+offset = Vector2(2.08165e-12, -40)
+hframes = 3
+vframes = 3
